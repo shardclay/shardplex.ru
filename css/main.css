@@ -86,7 +86,7 @@ header {
     will-change: transform;
     transition: transform 0.3s cubic-bezier(0.03, 0.78, 0.52, 0.97);
     margin: 0 auto;
-    padding: 4rem;
+    padding: 3rem;
 }
 
 header::before {
@@ -106,10 +106,10 @@ header::after {
     content: '';
     position: absolute;
     inset: 2px;
-    top: -2px;
+    /*top: -2px;
     left: -2px;
     right: -2px;
-    bottom: -2px;
+    bottom: -2px;*/
     border: 2px solid var(--brand-color);
     border-radius: 22px;
     opacity: 0.3;
