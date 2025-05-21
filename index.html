@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shardclay | Социальные сети</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- Прелоадер -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <div class="container">
+        <div class="parallax-container">
+            <header id="parallaxHeader">
+                <h1>Shardclay</h1>
+                <p>Присоединяйтесь к моим сообществам и платформам</p>
+            </header>
+        </div>
+
+        <div class="links-grid">
+            <a href="https://vk.com/shardclay" class="link-card" target="_blank">
+                <i class="icon fab fa-vk vk"></i>
+                <div class="link-text">
+                    <div class="link-title">Основное сообщество</div>
+                    <div class="link-url">vk.com/shardclay</div>
+                </div>
+            </a>
+
+            <a href="https://vk.com/shardstream" class="link-card" target="_blank">
+                <i class="icon fab fa-vk vk"></i>
+                <div class="link-text">
+                    <div class="link-title">Стримерское сообщество</div>
+                    <div class="link-url">vk.com/shardstream</div>
+                </div>
+            </a>
+
+            <a href="https://www.youtube.com/@shardclay" class="link-card" target="_blank">
+                <i class="icon fab fa-youtube youtube"></i>
+                <div class="link-text">
+                    <div class="link-title">YouTube канал</div>
+                    <div class="link-url">youtube.com/@shardclay</div>
+                </div>
+            </a>
+
+            <a href="https://www.twitch.tv/shardclay" class="link-card" target="_blank">
+                <i class="icon fab fa-twitch twitch"></i>
+                <div class="link-text">
+                    <div class="link-title">Twitch стримы</div>
+                    <div class="link-url">twitch.tv/shardclay</div>
+                </div>
+            </a>
+
+            <a href="https://www.instagram.com/shardclay" class="link-card" target="_blank">
+                <i class="icon fab fa-instagram instagram"></i>
+                <div class="link-text">
+                    <div class="link-title">Instagram</div>
+                    <div class="link-url">instagram.com/shardclay</div>
+                </div>
+            </a>
+
+            <a href="https://t.me/shardclay" class="link-card" target="_blank">
+                <i class="icon fab fa-telegram telegram"></i>
+                <div class="link-text">
+                    <div class="link-title">Основной Telegram</div>
+                    <div class="link-url">t.me/shardclay</div>
+                </div>
+            </a>
+
+            <a href="https://t.me/shardclay_stream" class="link-card" target="_blank">
+                <i class="icon fab fa-telegram telegram"></i>
+                <div class="link-text">
+                    <div class="link-title">Стримерский Telegram</div>
+                    <div class="link-url">t.me/shardclay_stream</div>
+                </div>
+            </a>
+
+            <a href="https://steamcommunity.com/id/shardclay" class="link-card" target="_blank">
+                <i class="icon fab fa-steam steam"></i>
+                <div class="link-text">
+                    <div class="link-title">Steam профиль</div>
+                    <div class="link-url">steamcommunity.com/id/shardclay</div>
+                </div>
+            </a>
+
+            <a href="https://ru.namemc.com/profile/shardclay" class="link-card" target="_blank">
+                <i class="icon fas fa-id-card namemc"></i>
+                <div class="link-text">
+                    <div class="link-title">NameMC профиль</div>
+                    <div class="link-url">namemc.com/shardclay</div>
+                </div>
+            </a>
+
+            <a href="https://www.donationalerts.com/r/shardclay" class="link-card" target="_blank">
+                <i class="icon fas fa-hand-holding-heart donationalerts"></i>
+                <div class="link-text">
+                    <div class="link-title">Поддержать проект</div>
+                    <div class="link-url">donationalerts.com/r/shardclay</div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="credits">
+                Сайт создан с использованием AI Assistant (<a href="https://deepseek.com" target="_blank">DeepSeek</a>)<br>
+                Дизайн и разработка: <a href="https://github.com/glowspruce" target="_blank">glowspruce</a><br>
+                © 2025 Все права защищены
+            </div>
+        </div>
+    </footer>
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.style.transition = 'opacity 0.5s';
+            preloader.style.opacity = '0';
+            
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        });
+
+        // 3D Параллакс с перспективой
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.getElementById('parallaxHeader');
+            const container = document.querySelector('.container');
+            const sensitivity = 64;
+            const scaleFactor = 0.0005; // Эффект масштабирования
+
+            const updateParallax = (e) => {
+                const { clientX, clientY } = e;
+                const { innerWidth, innerHeight } = window;
+                
+                const rotateX = (clientY - innerHeight/2) / sensitivity * -1;
+                const rotateY = (clientX - innerWidth/2) / sensitivity * 1;
+                const scale = 1 + (scaleFactor * 2) - 
+                    (Math.abs(rotateY) + Math.abs(rotateX)) * scaleFactor;
+
+                header.style.transform = `
+                    scale(${scale})
+                    rotateX(${rotateX}deg)
+                    rotateY(${rotateY}deg)
+                    translateZ(10px)
+                `;
+            }
+
+            document.addEventListener('mousemove', updateParallax);
+            document.addEventListener('mouseleave', () => {
+                header.style.transform = 'scale(1) rotateX(0) rotateY(0) translateZ(0)';
+            });
+        });
+
+        // Фикс для плавных переходов между карточками
+        document.querySelectorAll('.link-card').forEach(card => {
+            let animationFrame;
+            
+            card.addEventListener('mouseenter', () => {
+                cancelAnimationFrame(animationFrame);
+                card.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+    </script>
+</body>
+</html>

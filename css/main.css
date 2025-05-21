@@ -1,0 +1,324 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+:root {
+    --brand-color: #1bd96a;
+    --brand-gradient: linear-gradient(135deg, #1bd96a 0%, #11a850 100%);
+}
+
+/* Прелоадер */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0f0f0f;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+
+.loader::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    border-top-color: #1bd96a;
+    animation: spin 1s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+}
+
+/* Добавляем медиазапросы для больших масштабов */
+@media screen and (min-width: 2560px) {
+    .container {
+        padding: 2rem 1.5rem;
+    }
+    
+    .link-card {
+        padding: 1.2rem;
+    }
+    
+    footer {
+        padding: 1rem;
+    }
+}
+
+/* Фикс для очень больших масштабов */
+@media screen and (min-resolution: 300dpi) {
+    html {
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    body {
+        min-width: 320px;
+        overflow-x: hidden;
+    }
+    
+    .container {
+        padding: 1rem;
+    }
+}
+
+/* Шапка с новой анимацией */
+header {
+    background: rgba(27, 217, 106, 0.05);
+    transform: translateZ(0);
+    text-align: center;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition: transform 0.3s cubic-bezier(0.03, 0.78, 0.52, 0.97);
+    margin: 0 auto;
+    padding: 4rem;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: var(--brand-gradient);
+    opacity: 0.1;
+    animation: rotate 20s linear infinite;
+    z-index: -1;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px solid var(--brand-color);
+    border-radius: 22px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* контейнер */
+.container {
+    max-width: min(1400px, 95%);
+    margin: 0 auto;
+    width: 100%;
+    flex: 1;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+.parallax-container {
+    perspective: 1000px;
+    margin: 0 -2rem;
+    padding: 2rem;
+}
+
+body {
+    background: #0f0f0f;
+    color: #fff;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    position: relative;
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textScale 3s ease-in-out infinite alternate;
+}
+
+/* Обновлённые цвета иконок */
+.vk { color: #4a76a8; }
+.youtube { color: #ff0000; }
+.twitch { color: #9146ff; }
+.instagram { color: #e1306c; }
+.telegram { color: #0088cc; }
+.steam { color: #acacac; }
+.namemc { color: var(--brand-color); }
+.donationalerts { color: #ff4242; }
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+@keyframes shine {
+    0% { transform: rotate(0deg) translateX(-50%); }
+    100% { transform: rotate(360deg) translateX(50%); }
+}
+
+@keyframes textGlow {
+    from { text-shadow: 0 0 10px rgba(0,163,255,0.3); }
+    to { text-shadow: 0 0 30px rgba(0,163,255,0.6); }
+}
+
+@keyframes textFlow {
+    0%, 100% {
+        background-size: 200% 200%;
+        background-position: left center;
+    }
+    50% {
+        background-size: 200% 200%;
+        background-position: right center;
+    }
+}
+
+@keyframes rotation {
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(360deg) }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes headerGlow {
+    0%, 100% {
+        background-position: 0% 50%;
+        opacity: 0.9;
+    }
+    50% {
+        background-position: 100% 50%;
+        opacity: 1;
+    }
+}
+
+@keyframes textScale {
+    0% { transform: scale(0.98); }
+    100% { transform: scale(1.02); }
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.link-card::before {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(27, 217, 106, 0.1),
+        transparent
+    );
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    content: '';
+
+    /*transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);*/
+}
+
+.link-card {
+    transition: 
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    text-decoration: none;
+    border-radius: 15px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 1.5rem;
+    color: inherit;
+    display: flex;
+    z-index: 1;
+    gap: 1rem;
+}
+
+.link-card:hover::before {
+    left: 100%;
+    transition-duration: 0.4s;
+}
+
+.link-card:hover {
+    box-shadow: 0 10px 20px rgba(27, 217, 106, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--brand-color);
+    box-shadow: 0 10px 20px rgba(27, 217, 106, 0.1);
+
+    transform: translateY(-5px) scale(1.02);
+    z-index: 2;
+}
+
+.link-title {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.link-text {
+    flex: 1;
+}
+
+.link-url {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.icon {
+    font-size: 1.8rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Обновленные стили футера */
+footer {
+    background: rgba(255,255,255,0.05);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto; /* Прижимаем футер к низу */
+}
+
+.credits {
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem); /* Адаптивный размер текста */
+    opacity: 0.7;
+    margin: 0 auto;
+    max-width: 90%;
+    line-height: 1.4;
+}
+
+.credits a {
+    color: #00ff88;
+    text-decoration: none;
+}
