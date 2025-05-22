@@ -299,64 +299,97 @@ h1 {
     justify-content: center;
 }
 
-        .mac-window {
-            width: 400px;
-            border-radius: 12px;
-            background: #1E1E1E;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-            overflow: hidden;
-            font-family: -apple-system, sans-serif;
-            position: fixed;
-            user-select: none;
-            display: none;
-            z-index: 1000;
-            top: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .titlebar {
-            background: #303030;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid #2D2D2D;
-            /*cursor: move;*/
-        }
-        .window-controls {
-            display: flex;
-            gap: 8px;
-        }
-        .control-btn {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.1s;
-        }
-        .close { background: #ff5f57; }
-        .minimize { background: #febc2e; }
-        .maximize { background: #28c940; }
-        .control-btn:hover { transform: scale(1.1); }
-        .window-content {
-            padding: 20px;
-            text-align: center;
-        }
-        #clickerButton {
-            background: #007aff;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-size: 20px;
-            cursor: pointer;
-            transition: transform 0.1s, background 0.2s;
-            margin: 20px 0;
-        }
-        #clickerButton:hover { background: #0063cc; transform: scale(1.05); }
-        #clickerButton:active { transform: scale(0.95); }
-        .counter { font-size: 24px; color: #FFFFFF; margin: 10px 0; }
-        .stats { font-size: 14px; color: #666; }
+.mac-window {
+    width: 400px;
+    border-radius: 12px;
+    background: #1E1E1E;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    overflow: hidden;
+    font-family: -apple-system, sans-serif;
+    position: fixed;
+    user-select: none;
+    display: none;
+    z-index: 1000;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.titlebar {
+    background: #303030;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #2D2D2D;
+    /*cursor: move;*/
+}
+
+.window-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.control-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.close { 
+    background: #ff5f57; 
+}
+
+.minimize { 
+    background: #febc2e; 
+}
+
+.maximize { 
+    background: #28c940; 
+}
+
+.control-btn:hover { 
+    transform: scale(1.1); 
+}
+
+.window-content {
+    padding: 20px;
+    text-align: center;
+}
+
+#clickerButton {
+    background: #007aff;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.2s;
+    margin: 20px 0;
+}
+
+#clickerButton:hover { 
+    background: #0063cc; 
+    transform: scale(1.05); 
+}
+
+#clickerButton:active { 
+    transform: scale(0.95); 
+}
+
+.counter { 
+    font-size: 24px; 
+    color: #FFFFFF; 
+    margin: 10px 0;
+}
+
+.stats { 
+    font-size: 14px;
+    color: #666;
+}
 
 /* Обновленные стили футера */
 footer {
