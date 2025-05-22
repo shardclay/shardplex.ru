@@ -315,6 +315,40 @@ h1 {
     transform: translateX(-50%);
 }
 
+ .mac-window.shop {
+            width: 500px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .improvement-item {
+            padding: 15px;
+            margin: 10px;
+            background: #2d2d2d;
+            border-radius: 8px;
+        }
+
+        .improvement-item button {
+            background: #0a84ff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        #openShopBtn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: #2d2d2d;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
 .titlebar {
     background: #303030;
     padding: 10px;
