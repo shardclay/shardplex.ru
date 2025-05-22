@@ -6,9 +6,70 @@
     <title>Shardclay | Социальные сети</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Стили кликера -->
+    <style>
+        .mac-window {
+            width: 400px;
+            border-radius: 12px;
+            background: #f0f0f0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            overflow: hidden;
+            font-family: -apple-system, sans-serif;
+            position: fixed;
+            user-select: none;
+            display: none;
+            z-index: 1000;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .titlebar {
+            background: #e8e8e8;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #d0d0d0;
+            cursor: move;
+        }
+        .window-controls {
+            display: flex;
+            gap: 8px;
+        }
+        .control-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .close { background: #ff5f57; }
+        .minimize { background: #febc2e; }
+        .maximize { background: #28c940; }
+        .control-btn:hover { transform: scale(1.1); }
+        .window-content {
+            padding: 20px;
+            text-align: center;
+        }
+        #clickerButton {
+            background: #007aff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.1s, background 0.2s;
+            margin: 20px 0;
+        }
+        #clickerButton:hover { background: #0063cc; transform: scale(1.05); }
+        #clickerButton:active { transform: scale(0.95); }
+        .counter { font-size: 24px; color: #333; margin: 10px 0; }
+        .stats { font-size: 14px; color: #666; }
+    </style>
 </head>
 <body>
-    <!-- Прелоадер -->
     <div id="preloader">
         <div class="loader"></div>
     </div>
@@ -21,6 +82,7 @@
             </header>
         </div>
 
+        <!-- Все оригинальные кнопки -->
         <div class="links-grid">
             <a href="https://vk.com/shardclay" class="link-card" target="_blank">
                 <i class="icon fab fa-vk vk"></i>
@@ -102,6 +164,7 @@
                 </div>
             </a>
 
+            <!-- Добавленная кнопка кликера -->
             <a href="#" class="link-card" id="openClicker">
                 <i class="icon fas fa-rocket"></i>
                 <div class="link-text">
@@ -110,7 +173,27 @@
                 </div>
             </a>
         </div>
+
+        <!-- Окно кликера -->
+        <div class="mac-window" id="window">
+            <div class="titlebar" id="titlebar">
+                <div class="window-controls">
+                    <button class="control-btn close" id="closeClicker"></button>
+                    <button class="control-btn minimize"></button>
+                    <button class="control-btn maximize"></button>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="counter">Кликов: <span id="count">0</span></div>
+                <button id="clickerButton">КЛИКАЙ!</button>
+                <div class="stats">
+                    <div>Скорость: <span id="cps">0</span> клик/сек</div>
+                    <div>Последний клик: <span id="lastClick">---</span></div>
+                </div>
+            </div>
+        </div>
     </div>
+
     <footer>
         <div class="container">
             <div class="credits">
@@ -120,60 +203,93 @@
             </div>
         </div>
     </footer>
+
     <script>
+        // Прелоадер
         window.addEventListener('load', function() {
             const preloader = document.getElementById('preloader');
             preloader.style.transition = 'opacity 0.5s';
             preloader.style.opacity = '0';
-            
-            setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 500);
+            setTimeout(() => preloader.style.display = 'none', 500);
         });
 
-        // 3D Параллакс с перспективой
+        // Параллакс
         document.addEventListener('DOMContentLoaded', () => {
             const header = document.getElementById('parallaxHeader');
-            const container = document.querySelector('.container');
             const sensitivity = 64;
-            const scaleFactor = 0.0005; // Эффект масштабирования
-
+            const scaleFactor = 0.0005;
+            
             const updateParallax = (e) => {
                 const { clientX, clientY } = e;
                 const { innerWidth, innerHeight } = window;
-                
                 const rotateX = (clientY - innerHeight/2) / sensitivity * -1;
                 const rotateY = (clientX - innerWidth/2) / sensitivity * 1;
-                const scale = 1 + (scaleFactor * 2) - 
-                    (Math.abs(rotateY) + Math.abs(rotateX)) * scaleFactor;
-
-                header.style.transform = `
-                    scale(${scale})
-                    rotateX(${rotateX}deg)
-                    rotateY(${rotateY}deg)
-                    translateZ(10px)
-                `;
+                const scale = 1 + (scaleFactor * 2) - (Math.abs(rotateY) + Math.abs(rotateX)) * scaleFactor;
+                header.style.transform = `scale(${scale}) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
             }
-
+            
             document.addEventListener('mousemove', updateParallax);
             document.addEventListener('mouseleave', () => {
                 header.style.transform = 'scale(1) rotateX(0) rotateY(0) translateZ(0)';
             });
         });
 
-        // Фикс для плавных переходов между карточками
-        document.querySelectorAll('.link-card').forEach(card => {
-            let animationFrame;
-            
-            card.addEventListener('mouseenter', () => {
-                cancelAnimationFrame(animationFrame);
-                card.style.transform = 'translateY(-5px) scale(1.02)';
-            });
+        // Кликер
+        let isDragging = false;
+        let clickCount = localStorage.getItem('clickCount') || 0;
+        let clicks = [];
+        const counter = document.getElementById('count');
+        const cpsElement = document.getElementById('cps');
+        const lastClickElement = document.getElementById('lastClick');
+        const clickerButton = document.getElementById('clickerButton');
+        const windowElement = document.getElementById('window');
+        const openClickerBtn = document.getElementById('openClicker');
+        const closeClickerBtn = document.getElementById('closeClicker');
 
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
-            });
+        // Управление окном
+        openClickerBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            windowElement.style.display = 'block';
         });
+
+        closeClickerBtn.addEventListener('click', () => {
+            windowElement.style.display = 'none';
+        });
+
+        // Drag & Drop
+        let offsetX = 0, offsetY = 0;
+        document.getElementById('titlebar').addEventListener('mousedown', (e) => {
+            isDragging = true;
+            offsetX = e.clientX - windowElement.offsetLeft;
+            offsetY = e.clientY - windowElement.offsetTop;
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                windowElement.style.left = `${e.clientX - offsetX}px`;
+                windowElement.style.top = `${e.clientY - offsetY}px`;
+            }
+        });
+
+        document.addEventListener('mouseup', () => isDragging = false);
+
+        // Логика кликов
+        clickerButton.addEventListener('click', () => {
+            clickCount++;
+            clicks.push(Date.now());
+            lastClickElement.textContent = new Date().toLocaleTimeString();
+            counter.textContent = clickCount;
+            localStorage.setItem('clickCount', clickCount);
+        });
+
+        setInterval(() => {
+            const now = Date.now();
+            clicks = clicks.filter(t => now - t < 1000);
+            cpsElement.textContent = clicks.length;
+        }, 1000);
+
+        // Инициализация
+        counter.textContent = clickCount;
     </script>
 </body>
 </html>
