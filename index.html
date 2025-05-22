@@ -128,27 +128,10 @@
                     <div>Скорость: <span id="cps">0</span> клик/сек</div>
                     <div>Последний клик: <span id="lastClick">---</span></div>
                 </div>
-                <button id="openShopBtn" onclick="toggleShop()">
-                <i class="fas fa-store"></i> Магазин улучшений
-                </button>
-            </div>
-        </div>  
-    </div>
-     <div class="mac-window shop" id="shopWindow">
-        <div class="titlebar">
-            <div class="window-controls">
-                <button class="control-btn close" onclick="toggleShop()"></button>
-            </div>
-        </div>
-        <div class="window-content">
-            <h2>Магазин улучшений</h2>
-            <div id="improvementsList"></div>
-            <div class="stats">
-                <p>Пассивный доход: <span id="passiveIncome">0</span>/сек</p>
-                <p>Бонусный множитель: x<span id="bonusMultiplier">1</span></p>
             </div>
         </div>
     </div>
+
     <footer>
         <div class="container">
             <div class="credits">
@@ -245,148 +228,6 @@
 
         // Инициализация
         counter.textContent = clickCount;
-    </script>
-        <script>
-        // =====================
-        // 🚀 IMPROVEMENTS SYSTEM
-        // =====================
-        const improvements = {
-            gigaclicks: {
-                name: 'Гига клики',
-                price: 50,
-                count: 0,
-                effect: 1,
-                type: 'click'
-            },
-            mine: {
-                name: 'Угольная шахта',
-                price: 100,
-                count: 0,
-                effect: 1,
-                type: 'passive'
-            },
-            supermarket: {
-                name: 'Супер-маркет',
-                price: 500,
-                count: 0,
-                effect: 2,
-                type: 'passive'
-            },
-            factory: {
-                name: 'Завод',
-                price: 2000,
-                count: 0,
-                effect: 5,
-                type: 'passive'
-            },
-            crystal: {
-                name: 'Шард-кристалл',
-                price: 1000,
-                count: 0,
-                effect: 50,
-                type: 'bonus'
-            }
-        };
-
-        let passiveIncome = 0;
-        let clickMultiplier = 1;
-        let bonusCounter = 0;
-
-        function updateShop() {
-            // Обновление списка улучшений
-            const list = document.getElementById('improvementsList');
-            list.innerHTML = '';
-            
-            for(const [key, imp] of Object.entries(improvements)) {
-                const item = document.createElement('div');
-                item.className = 'improvement-item';
-                item.innerHTML = `
-                    <h3>${imp.name}</h3>
-                    <p>+${imp.effect} ${imp.type === 'passive' ? '/сек' : 'за клик'}</p>
-                    <p>Цена: ${Math.floor(imp.price * Math.pow(1.5, imp.count))}</p>
-                    <p>Куплено: ${imp.count}</p>
-                    <button onclick="buyImprovement('${key}')">Купить</button>
-                `;
-                list.appendChild(item);
-            }
-
-            // Обновление статистики
-            document.getElementById('passiveIncome').textContent = 
-                improvements.mine.count * improvements.mine.effect +
-                improvements.supermarket.count * improvements.supermarket.effect +
-                improvements.factory.count * improvements.factory.effect;
-
-            document.getElementById('bonusMultiplier').textContent = 
-                improvements.crystal.count + 1;
-        }
-
-        function buyImprovement(type) {
-            const imp = improvements[type];
-            const cost = Math.floor(imp.price * Math.pow(1.5, imp.count));
-            
-            if(clickCount >= cost) {
-                clickCount -= cost;
-                imp.count++;
-                updateShop();
-                saveGame();
-            }
-        }
-
-        function toggleShop() {
-            const shop = document.getElementById('shopWindow');
-            shop.style.display = shop.style.display === 'block' ? 'none' : 'block';
-        }
-
-        // Пассивный доход
-        setInterval(() => {
-            clickCount += 
-                improvements.mine.count * improvements.mine.effect +
-                improvements.supermarket.count * improvements.supermarket.effect +
-                improvements.factory.count * improvements.factory.effect;
-            
-            updateCounter();
-        }, 1000);
-
-        // =====================
-        // МОДИФИЦИРОВАННЫЕ ФУНКЦИИ
-        // =====================
-        let clickCount = localStorage.getItem('clickCount') || 0;
-        
-        function updateCounter() {
-            counter.textContent = clickCount;
-            localStorage.setItem('clickCount', clickCount);
-        }
-
-        clickerButton.addEventListener('click', () => {
-            let add = 1 + improvements.gigaclicks.count;
-            bonusCounter++;
-            
-            if(bonusCounter % 10 === 0) {
-                add += improvements.crystal.count * improvements.crystal.effect;
-            }
-            
-            clickCount += add;
-            clicks.push(Date.now());
-            lastClickElement.textContent = new Date().toLocaleTimeString();
-            updateCounter();
-        });
-
-        // Инициализация при загрузке
-        window.addEventListener('load', () => {
-            // Загрузка сохранений
-            const savedImprovements = localStorage.getItem('improvements');
-            if(savedImprovements) {
-                Object.assign(improvements, JSON.parse(savedImprovements));
-            }
-            updateShop();
-        });
-
-        function saveGame() {
-            localStorage.setItem('improvements', JSON.stringify(improvements));
-        }
-
-        // Остальной код без изменений
-        // ...
     </script>
 </body>
 </html>
