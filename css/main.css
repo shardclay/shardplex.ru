@@ -300,121 +300,63 @@ h1 {
 }
 
 .mac-window {
-            width: 500px;
-            position: fixed;
-            background: #1E1E1E;
+            width: 400px;
             border-radius: 12px;
-            color: white;
+            background: #f0f0f0;
             box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-            font-family: -apple-system, sans-serif;
-            border: 1px solid #404040;
-            user-select: none;
-            cursor: move;
             overflow: hidden;
+            font-family: -apple-system, sans-serif;
+            position: fixed;
+            user-select: none;
+            display: none;
+            z-index: 1000;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
         }
-        
-        .window-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 15px;
-            background: #303030;
-        }
-        
-        .window-content {
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .stats-container {
-            text-align: center;
-            width: 50%;
+        .titlebar {
+            background: #e8e8e8;
             padding: 10px;
-            border-radius: 8px;
-            color: rgb(102, 102, 102);
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #d0d0d0;
+            cursor: move;
         }
-
         .window-controls {
             display: flex;
             gap: 8px;
         }
-        
-        .control-button {
+        .control-btn {
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            cursor: pointer;
-        }
-        
-        .close { background: #ff5f56; }
-        .minimize { background: #ffbd2e; }
-        .maximize { background: #27c93f; }
-
-        .click-button {
-            padding: 25px 50px;
-            font-size: 24px;
-            background: #1bd96a;
             border: none;
-            border-radius: 12px;
-            color: white;
             cursor: pointer;
-            transition: transform 0.1s, background 0.2s;
-            transform: scale(1);
+            transition: transform 0.1s;
         }
-
-        .click-button:active {
-            transform: scale(0.95);
-            background: #17B252;
-        }
-
-        .shop-item {
-            background: #404040;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 10px 0;
-            cursor: pointer;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            padding: 1rem;
-        }
-
-        .book-button {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #404040;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-        }
-
-        .book-button:hover {
-            background: #505050;
-        }
-        .counter {
-            font-size: 24px;
-            margin-block-start: 0.67em;
-            margin-block-end: 0.67em;
-            margin-inline-start: 0px;
-            margin-inline-end: 0px;
-            font-weight: bold;
-            unicode-bidi: isolate;
-        }
-        .shop-item {
+        .close { background: #ff5f57; }
+        .minimize { background: #febc2e; }
+        .maximize { background: #28c940; }
+        .control-btn:hover { transform: scale(1.1); }
+        .window-content {
+            padding: 20px;
             text-align: center;
         }
-
+        #clickerButton {
+            background: #007aff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.1s, background 0.2s;
+            margin: 20px 0;
+        }
+        #clickerButton:hover { background: #0063cc; transform: scale(1.05); }
+        #clickerButton:active { transform: scale(0.95); }
+        .counter { font-size: 24px; color: #333; margin: 10px 0; }
+        .stats { font-size: 14px; color: #666; }
 /* Обновленные стили футера */
 footer {
     background: rgba(255,255,255,0.05);
