@@ -112,24 +112,43 @@
             </a>
         </div>
 
-        <!-- Окно кликера -->
-        <div class="mac-window" id="window">
-            <div class="titlebar" id="titlebar">
-                <div class="window-controls">
-                    <button class="control-btn close" id="closeClicker"></button>
-                    <button class="control-btn minimize"></button>
-                    <button class="control-btn maximize"></button>
-                </div>
+       <button onclick="showClickerWindow()">Открыть кликер</button>
+
+    <!-- Окно кликера -->
+    <div id="clickerWindow" class="mac-window" style="display: none; top: 50px; left: 50px; width: 400px;">
+        <div class="window-header" onmousedown="startDragging(event, 'clickerWindow')">
+            <div class="window-controls">
+                <div class="control-button close" onclick="closeWindow('clickerWindow')"></div>
+                <div class="minimize control-button"></div>
+                <div class="maximize control-button"></div>
             </div>
-            <div class="window-content">
-                <div class="counter">Кликов: <span id="count">0</span></div>
-                <button id="clickerButton">КЛИКАЙ!</button>
-                <div class="stats">
-                    <div>Скорость: <span id="cps">0</span> клик/сек</div>
-                    <div>Последний клик: <span id="lastClick">---</span></div>
-                </div>
-            </div>
+            <span> </span>
         </div>
+        <div class="window-content">
+            <div class="counter">Кликов: <span id="score" class="formatted-score">0</span></div>
+            <button class="click-button" onclick="handleClick()">КЛИКАЙ!</button>
+            <div class="stats-container">
+                <div>Пасивный доход: <span id="cps">0</span>/сек</div>
+                <div>CPS: <span id="cpsCounter">0</span></div>
+            </div>
+            <button class="book-button" onclick="showShopWindow()">$</button>
+        </div>
+    </div>
+
+    <!-- Окно магазина -->
+    <div id="shopWindow" class="mac-window" style="display: none; top: 100px; left: 400px; width: 250px;">
+        <div class="window-header" onmousedown="startDragging(event, 'shopWindow')">
+            <div class="window-controls">
+                <div class="control-button close" onclick="closeWindow('shopWindow')"></div>
+                <div class="minimize control-button"></div>
+                <div class="maximize control-button"></div>
+            </div>
+            <span> </span>
+        </div>
+        <div class="window-content">
+            <div id="shopItems"></div>
+        </div>
+    </div>
     </div>
 
     <footer>
@@ -172,62 +191,170 @@
             });
         });
 
-        // Кликер
+        <script>
+        let score = 0;
+        let clickPower = 1;
+        let clickCount = 0;
         let isDragging = false;
-        let clickCount = localStorage.getItem('clickCount') || 0;
-        let clicks = [];
-        const counter = document.getElementById('count');
-        const cpsElement = document.getElementById('cps');
-        const lastClickElement = document.getElementById('lastClick');
-        const clickerButton = document.getElementById('clickerButton');
-        const windowElement = document.getElementById('window');
-        const openClickerBtn = document.getElementById('openClicker');
-        const closeClickerBtn = document.getElementById('closeClicker');
+        let currentDraggedWindow = null;
+        let dragOffset = {x: 0, y: 0};
+        let clicksInSecond = 0;
+        let cps = 0;
 
-        // Управление окном
-        openClickerBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            windowElement.style.display = 'block';
-        });
+        const upgrades = {
+            gigaclick: { basePrice: 10, count: 0, multiplier: 1 },
+            coalMine: { basePrice: 50, count: 0, multiplier: 1 },
+            supermarket: { basePrice: 200, count: 0, multiplier: 2 },
+            factory: { basePrice: 500, count: 0, multiplier: 5 },
+            shard: { basePrice: 1000, count: 0 }
+        };
 
-        closeClickerBtn.addEventListener('click', () => {
-            windowElement.style.display = 'none';
-        });
-
-        // Drag & Drop
-        let offsetX = 0, offsetY = 0;
-        document.getElementById('titlebar').addEventListener('mousedown', (e) => {
-            isDragging = true;
-            offsetX = e.clientX - windowElement.offsetLeft;
-            offsetY = e.clientY - windowElement.offsetTop;
-        });
-
+        // Добавляем обработчики для drag and drop
         document.addEventListener('mousemove', (e) => {
-            if (isDragging) {
-                windowElement.style.left = `${e.clientX - offsetX}px`;
-                windowElement.style.top = `${e.clientY - offsetY}px`;
+            if(isDragging && currentDraggedWindow) {
+                const window = document.getElementById(currentDraggedWindow);
+                window.style.left = (e.clientX - dragOffset.x) + 'px';
+                window.style.top = (e.clientY - dragOffset.y) + 'px';
             }
         });
 
-        document.addEventListener('mouseup', () => isDragging = false);
-
-        // Логика кликов
-        clickerButton.addEventListener('click', () => {
-            clickCount++;
-            clicks.push(Date.now());
-            lastClickElement.textContent = new Date().toLocaleTimeString();
-            counter.textContent = clickCount;
-            localStorage.setItem('clickCount', clickCount);
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            currentDraggedWindow = null;
         });
 
+        function startDragging(e, windowId) {
+            const window = document.getElementById(windowId);
+            const rect = window.getBoundingClientRect();
+            dragOffset = {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+            isDragging = true;
+            currentDraggedWindow = windowId;
+        }
+
+        function closeWindow(windowId) {
+            document.getElementById(windowId).style.display = 'none';
+        }
+
+        function handleClick() {
+            clickCount++;
+            let add = clickPower + upgrades.gigaclick.count;
+            
+            if(clickCount % 10 === 0) {
+                add += 50 * upgrades.shard.count;
+            }
+            
+            score += add;
+            updateDisplay();
+        }
+
+        // Остальные функции остаются без изменений
+        function updatePrices() {
+            for(let upgrade in upgrades) {
+                upgrades[upgrade].price = Math.floor(upgrades[upgrade].basePrice * 
+                    Math.pow(1.1, upgrades[upgrade].count));
+            }
+        }
+
+        function buyUpgrade(upgradeName) {
+            const upgrade = upgrades[upgradeName];
+            if(score >= upgrade.price) {
+                score -= upgrade.price;
+                upgrade.count++;
+                updatePrices();
+                updateDisplay();
+                updateShop();
+            }
+        }
+
+        function updateDisplay() {
+            document.getElementById('score').textContent = Math.floor(score);
+            document.getElementById('cps').textContent = 
+                upgrades.coalMine.count * 1 + 
+                upgrades.supermarket.count * 2 + 
+                upgrades.factory.count * 5;
+        }
+
+        function updateShop() {
+            const shop = document.getElementById('shopItems');
+            shop.innerHTML = `
+                <div class="shop-item" onclick="buyUpgrade('gigaclick')">
+                    Гига клики<br>
+                    [ ${upgrades.gigaclick.count} ]<br>
+                    Цена: ${upgrades.gigaclick.price}
+                </div>
+                <div class="shop-item" onclick="buyUpgrade('coalMine')">
+                    Угольная шахта<br>
+                    [ ${upgrades.coalMine.count} ]<br>
+                    Цена: ${upgrades.coalMine.price}
+                </div>
+                <div class="shop-item" onclick="buyUpgrade('supermarket')">
+                    Супер-маркет<br>
+                    [ ${upgrades.supermarket.count} ]<br>
+                    Цена: ${upgrades.supermarket.price}
+                </div>
+                <div class="shop-item" onclick="buyUpgrade('factory')">
+                    Завод<br>
+                    [ ${upgrades.factory.count} ]<br>
+                    Цена: ${upgrades.factory.price}
+                </div>
+                <div class="shop-item" onclick="buyUpgrade('shard')">
+                    Шард-кристалл<br>
+                    [${upgrades.shard.count} ]<br>
+                    Цена: ${upgrades.shard.price}
+                </div>
+            `;
+        }
+
         setInterval(() => {
-            const now = Date.now();
-            clicks = clicks.filter(t => now - t < 1000);
-            cpsElement.textContent = clicks.length;
+            score += 
+                upgrades.coalMine.count * 1 + 
+                upgrades.supermarket.count * 2 + 
+                upgrades.factory.count * 5;
+            updateDisplay();
         }, 1000);
 
-        // Инициализация
-        counter.textContent = clickCount;
+        function showClickerWindow() {
+            document.getElementById('clickerWindow').style.display = 'block';
+            updatePrices();
+            updateShop();
+        }
+
+        function showShopWindow() {
+            document.getElementById('shopWindow').style.display = 'block';
+        }
+
+        updatePrices();
+        function handleClick() {
+            clickCount++;
+            clicksInSecond++; // Добавляем счетчик кликов для текущей секунды
+            let add = clickPower + upgrades.gigaclick.count;
+            
+            if(clickCount % 10 === 0) {
+                add += 50 * upgrades.shard.count;
+            }
+            
+            score += add;
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            document.getElementById('score').textContent = Math.floor(score);
+            document.getElementById('cps').textContent = 
+                upgrades.coalMine.count * 1 + 
+                upgrades.supermarket.count * 2 + 
+                upgrades.factory.count * 5;
+            document.getElementById('cpsCounter').textContent = cps; // Обновляем CPS
+        }
+
+        // Обновляем CPS каждую секунду
+        setInterval(() => {
+            cps = clicksInSecond;
+            clicksInSecond = 0;
+            updateDisplay();
+        }, 1000);
     </script>
 </body>
 </html>
