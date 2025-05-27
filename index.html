@@ -160,7 +160,7 @@
             <span> </span>
         </div>
         <div class="window-content">
-            <img src="https://github.com/shardclay/shardplex.ru/blob/main/images/chest_close.png" 
+            <img src="https://raw.githubusercontent.com/shardclay/shardplex.ru/refs/heads/main/images/chest_close.png" 
                  class="chest-image" 
                  id="chestImage">
             <div id="result"></div>
@@ -476,7 +476,7 @@
 
         function openChest() {
             const chest = document.getElementById('chestImage');
-            chest.src = 'https://github.com/shardclay/shardplex.ru/blob/main/images/chest_open.png';
+            chest.src = 'images/chest_open.png';
             
             const result = document.getElementById('result');
             result.textContent = `Вы получили: ${items[Math.floor(Math.random() * items.length)]}`;
@@ -496,7 +496,7 @@
                 if(timeLeft <= 0) {
                     clearInterval(countdown);
                     isCooldown = false;
-                    document.getElementById('chestImage').src = 'https://raw.githubusercontent.com/shardclay/shardplex.ru/main/chest_close.png';
+                    document.getElementById('chestImage').src = 'https://raw.githubusercontent.com/shardclay/shardplex.ru/refs/heads/main/images/chest_close.png';
                     document.getElementById('result').textContent = '';
                     document.getElementById('timer').textContent = '';
                     playCloseSound();
