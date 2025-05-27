@@ -200,7 +200,7 @@
         let cps = 0;
 
         const upgrades = {
-            gigaclick: { basePrice: 10, count: 0, multiplier: 10 },
+            gigaclick: { basePrice: 10, count: 0, multiplier: 1 },
             coalMine: { basePrice: 50, count: 0, multiplier: 1 },
             supermarket: { basePrice: 200, count: 0, multiplier: 2 },
             factory: { basePrice: 500, count: 0, multiplier: 5 },
@@ -300,7 +300,7 @@
                 </div>
                 <div class="shop-item" onclick="buyUpgrade('shard')">
                     Шард-кристалл<br>
-                    [${upgrades.shard.count} ]<br>
+                    [ ${upgrades.shard.count} ]<br>
                     Цена: ${upgrades.shard.price}
                 </div>
             `;
