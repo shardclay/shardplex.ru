@@ -155,7 +155,7 @@ h1 {
 .donationalerts { color: #ff4242; }
 .clicker { color: #fff; }
 .chest { color: #ffde21; }
-.cube-icon { color: #fff); }
+.cube-icon { color: #fff; }
 
 @keyframes rotate {
     0% { transform: rotate(0deg); }
