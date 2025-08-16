@@ -1,0 +1,57 @@
+.scene {
+    width: 128px;
+    height: 128px;
+    perspective: 512px;
+    margin: 100px auto;
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    cursor: grab;
+}
+
+.cube.grabbing {
+    cursor: grabbing;
+}
+
+.cube-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    image-rendering: pixelated;
+}
+
+.front  { 
+    transform: translateZ(64px);
+    background-image:url("../images/barrel_side.png");
+}
+
+.back   { 
+    transform: rotateY(180deg) translateZ(64px);
+    background-image:url("../images/barrel_side.png");
+}
+
+.right  { 
+    transform: rotateY(90deg) translateZ(64px);
+    background-image:url("../images/barrel_side.png");
+}
+
+.left   { 
+    transform: rotateY(-90deg) translateZ(64px);
+    background-image:url("../images/barrel_side.png");
+}
+
+.top    { 
+    transform: rotateX(90deg) translateZ(64px);
+    background-image:url("../images/barrel_top.png");
+}
+
+.bottom { 
+    transform: rotateX(-90deg) translateZ(64px);
+    background-image:url("../images/barrel_bottom.png");
+}

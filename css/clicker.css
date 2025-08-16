@@ -1,0 +1,75 @@
+.stats-container {
+    text-align: center;
+    width: 70%;
+    padding: 10px;
+    border-radius: 8px;
+    color: rgb(102, 102, 102);
+}
+
+.click-button {
+    padding: 25px 50px;
+    font-size: 24px;
+    background: #1bd96a;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.2s;
+    transform: scale(1);
+}
+
+.click-button:active {
+    transform: scale(0.95);
+    background: #17B252;
+}
+
+.shop-item {
+    background: #404040;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.book-button {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #404040;
+    font-family: -apple-system, sans-serif;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.book-button:hover { background: #505050; }
+
+#shopItems {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.counter {
+    font-size: 24px;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+.shop-item {
+    text-align: center;
+}

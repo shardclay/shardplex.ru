@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shardclay | Социальные сети</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/ui.css">
+    <link rel="stylesheet" href="css/clicker.css">
+    <link rel="stylesheet" href="css/chest.css">
+    <link rel="stylesheet" href="css/cube.css">
+    <link rel="stylesheet" href="css/inventory.css">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 <body>
     <div id="preloader">
@@ -98,37 +103,12 @@
                     <div class="link-url">donationalerts.com/r/shardclay</div>
                 </div>
             </a>
-
-            <a href="#" class="link-card" id="openClicker">
-                <i class="icon fas fa-rocket clicker"></i>
-                    <div class="link-text">
-                    <div class="link-title">Запустить Кликер</div>
-                    <div class="link-url">Нажми чтобы играть</div>
-                </div>
-            </a>
-
-            <a href="#" class="link-card" id="openChest">
-                <i class="icon fa-solid fa-trophy chest"></i>
-                    <div class="link-text">
-                    <div class="link-title">Запустить Кейсы</div>
-                    <div class="link-url">Испытай удачу</div>
-                </div>
-            </a>
-            
-            <a href="#" class="link-card" id="openCube">
-                <i class="icon fa-solid fa-square cube-icon"></i>
-                    <div class="link-text">
-                    <div class="link-title">Бочка</div>
-                    <div class="link-url">Можно крутить</div>
-                </div>
-            </a>
-
         </div>
 
     <div id="clickerWindow" class="window" style="display: none; width: 350px;">
         <div class="window-header">
             <div class="window-controls">
-                <div class="control-button close" onclick="closeWindow('clickerWindow')"></div>
+                <div class="control-button close"></div>
                 <div class="minimize control-button"></div>
                 <div class="maximize control-button"></div>
             </div>
@@ -136,19 +116,19 @@
         </div>
         <div class="window-content">
             <div class="counter">Кликов: <span id="score" class="formatted-score">0</span></div>
-            <button class="click-button" onclick="handleClick()">КЛИКАЙ!</button>
+            <button id="clicker-button" class="click-button">КЛИКАЙ!</button>
             <div class="stats-container">
                 <div>Пасивный доход: <span id="cps">0</span>/сек</div>
                 <div>CPS: <span id="cpsCounter">0</span></div>
             </div>
-            <button class="book-button" onclick="showShopWindow()">$</button>
+            <button id="shop-button" class="book-button">$</button>
         </div>
     </div>
 
     <div id="shopWindow" class="window" style="display: none; width: 350px;">
         <div class="window-header">
             <div class="window-controls">
-                <div class="control-button close" onclick="closeWindow('shopWindow')"></div>
+                <div class="control-button close"></div>
                 <div class="minimize control-button"></div>
                 <div class="maximize control-button"></div>
             </div>
@@ -159,17 +139,18 @@
         </div>
     </div>
 
-    <div id="chestWindow" class="window" style="display: none; width: 300px; height: 400px;">
+    <div id="chestWindow" class="window" style="display: none; width: 350px; height: 450px;">
         <div class="window-header">
             <div class="window-controls">
-                <div class="control-button close" onclick="closeWindow('chestWindow')"></div>
+                <div class="control-button close"></div>
                 <div class="minimize control-button"></div>
                 <div class="maximize control-button"></div>
             </div>
             <span> </span>
         </div>
         <div class="window-content">
-            <img src="/images/chest_close.png" 
+            <div id="particles-js"></div>
+            <img src="images/chest_close.png" 
                  class="chest-image" 
                  id="chestImage">
             <div id="result"></div>
@@ -177,10 +158,10 @@
         </div>
     </div>
 
-    <div id="cubeWindow" class="window" style="display: none; width: 300px; height: 350px;">
+        <div id="cubeWindow" class="window" style="display: none; width: 300px; height: 350px;">
         <div class="window-header">
             <div class="window-controls">
-                <div class="control-button close" onclick="closeWindow('cubeWindow')"></div>
+                <div class="control-button close"></div>
                 <div class="minimize control-button"></div>
                 <div class="maximize control-button"></div>
             </div>
@@ -198,12 +179,49 @@
         </div>
     </div>
 
+    <div id="inventoryWindow" class="window" style="display: none; width: 400px; height: 500px;">
+        <div class="window-header">
+            <div class="window-controls">
+                <div class="control-button close"></div>
+                <div class="minimize control-button"></div>
+                <div class="maximize control-button"></div>
+            </div>
+            <span> </span>
+        </div>
+        <div class="window-content" id="inventory-grid">
+        </div>
+    </div>
+
+    
+
     <div class="overlay" id="overlay">
         <div class="wait-message">
             Пожалуйста, подождите 1 минуту перед следующим открытием
         </div>
     </div>
 </div>
+
+    <div class="floating-menu-container">
+        <div id="floating-menu" class="floating-menu">
+            <a href="#" class="floating-menu-item" id="openClicker">
+                <i class="icon fas fa-rocket clicker"></i>
+            </a>
+            <a href="#" class="floating-menu-item" id="openChest">
+                <i class="icon fa-solid fa-trophy chest"></i>
+            </a>
+            <a href="#" class="floating-menu-item" id="openCube">
+                <i class="icon fa-solid fa-square cube-icon"></i>
+            </a>
+            <a href="#" class="floating-menu-item" id="openInventory">
+                <i class="icon fa-solid fa-box"></i>
+            </a>
+            
+        </div>
+        <button id="floating-action-button" class="floating-action-button">
+            <i class="fas fa-plus"></i>
+        </button>
+    </div>
+
     <footer>
         <div class="container">
             <div class="credits">
@@ -214,436 +232,10 @@
         </div>
     </footer>
 
-    <script>
-        // Прелоадер
-        window.addEventListener('load', function() {
-            const preloader = document.getElementById('preloader');
-            preloader.style.transition = 'opacity 0.5s';
-            preloader.style.opacity = '0';
-            setTimeout(() => preloader.style.display = 'none', 500);
-        });
-
-        // Параллакс
-        document.addEventListener('DOMContentLoaded', () => {
-            const header = document.getElementById('parallaxHeader');
-            const sensitivity = 64;
-            const scaleFactor = 0.0005;
-            
-            const updateParallax = (e) => {
-                const { clientX, clientY } = e;
-                const { innerWidth, innerHeight } = window;
-                const rotateX = (clientY - innerHeight/2) / sensitivity * -1;
-                const rotateY = (clientX - innerWidth/2) / sensitivity * 1;
-                const scale = 1 + (scaleFactor * 2) - (Math.abs(rotateY) + Math.abs(rotateX)) * scaleFactor;
-                header.style.transform = `scale(${scale}) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-            }
-            
-            document.addEventListener('mousemove', updateParallax);
-            document.addEventListener('mouseleave', () => {
-                header.style.transform = 'scale(1) rotateX(0) rotateY(0) translateZ(0)';
-            });
-        });
-
-        let zIndex = 100; // Базовый уровень z-index
-
-        // Функция активации окна
-        function activateWindow(windowElem) {
-        // Сбрасываем активный класс у всех окон
-        document.querySelectorAll('.window').forEach(w => {
-            w.classList.remove('active');
-        });
-        
-        // Устанавливаем новый z-index и активируем текущее окно
-        zIndex += 1;
-        windowElem.style.zIndex = zIndex;
-        windowElem.classList.add('active');
-        }
-
-        // Модифицированная функция центрирования
-        function centerWindow(windowElem) {
-        if (!windowElem) return;
-        
-        const windowWidth = windowElem.offsetWidth;
-        const windowHeight = windowElem.offsetHeight;
-        
-        windowElem.style.left = `${(window.innerWidth - windowWidth) / 2}px`;
-        windowElem.style.top = `${(window.innerHeight - windowHeight) / 2}px`;
-        
-        activateWindow(windowElem); // Активируем при центрировании
-        }
-
-        // Инициализация z-index для всех окон при загрузке
-        window.addEventListener('load', () => {
-        document.querySelectorAll('.window').forEach((window, index) => {
-            window.style.zIndex = 100 + index; // Начальный z-index
-        });
-        centerAllWindows();
-        });
-
-        // Центрирование всех окон
-        function centerAllWindows() {
-        document.querySelectorAll('.window').forEach(window => {
-            centerWindow(window);
-        });
-        }
-
-        // Инициализация перетаскивания
-        let isDragging = false;
-        let currentWindow = null;
-        let startX = 0;
-        let startY = 0;
-        let initialX = 0;
-        let initialY = 0;
-
-        // Обновленный обработчик перетаскивания
-        document.querySelectorAll('.window-header').forEach(header => {
-        header.addEventListener('mousedown', function(e) {
-            if (e.button !== 0) return;
-            
-            const window = this.closest('.window');
-            activateWindow(window);
-            
-            const rect = window.getBoundingClientRect();
-            let isDragging = true;
-            let startX = e.clientX;
-            let startY = e.clientY;
-            let initialX = rect.left;
-            let initialY = rect.top;
-
-            const mouseMoveHandler = e => {
-            if (!isDragging) return;
-            const deltaX = e.clientX - startX;
-            const deltaY = e.clientY - startY;
-            window.style.left = `${initialX + deltaX}px`;
-            window.style.top = `${initialY + deltaY}px`;
-            };
-
-            const mouseUpHandler = () => {
-            isDragging = false;
-            document.removeEventListener('mousemove', mouseMoveHandler);
-            document.removeEventListener('mouseup', mouseUpHandler);
-            };
-
-            document.addEventListener('mousemove', mouseMoveHandler);
-            document.addEventListener('mouseup', mouseUpHandler);
-        });
-        });
-
-        // Кликер
-        let score = 0;
-        let clickPower = 1;
-        let clickCount = 0;
-        let clicksInSecond = 0;
-        let cps = 0;
-
-        const upgrades = {
-            gigaclick: { basePrice: 10, count: 0, multiplier: 1 },
-            coalMine: { basePrice: 50, count: 0, multiplier: 1 },
-            supermarket: { basePrice: 200, count: 0, multiplier: 2 },
-            factory: { basePrice: 500, count: 0, multiplier: 5 },
-            shard: { basePrice: 1000, count: 0 }
-        };
-
-        function handleClick() {
-            clickCount++;
-            let add = clickPower + upgrades.gigaclick.count;
-            
-            if(clickCount % 10 === 0) {
-                add += 50 * upgrades.shard.count;
-            }
-            
-            score += add;
-            updateDisplay();
-        }
-
-        function updatePrices() {
-            for(let upgrade in upgrades) {
-                upgrades[upgrade].price = Math.floor(upgrades[upgrade].basePrice * 
-                    Math.pow(1.1, upgrades[upgrade].count));
-            }
-        }
-
-        function buyUpgrade(upgradeName) {
-            const upgrade = upgrades[upgradeName];
-            if(score >= upgrade.price) {
-                score -= upgrade.price;
-                upgrade.count++;
-                updatePrices();
-                updateDisplay();
-                updateShop();
-            }
-        }
-
-        function updateDisplay() {
-            document.getElementById('score').textContent = Math.floor(score);
-            document.getElementById('cps').textContent = 
-                upgrades.coalMine.count * 1 + 
-                upgrades.supermarket.count * 2 + 
-                upgrades.factory.count * 5;
-        }
-
-        function updateShop() {
-            const shop = document.getElementById('shopItems');
-            shop.innerHTML = `
-                <div class="shop-item" onclick="buyUpgrade('gigaclick')">
-                    Гига клики<br>
-                    [ ${upgrades.gigaclick.count} ]<br>
-                    Цена: ${upgrades.gigaclick.price}
-                </div>
-                <div class="shop-item" onclick="buyUpgrade('coalMine')">
-                    Угольная шахта<br>
-                    [ ${upgrades.coalMine.count} ]<br>
-                    Цена: ${upgrades.coalMine.price}
-                </div>
-                <div class="shop-item" onclick="buyUpgrade('supermarket')">
-                    Супер-маркет<br>
-                    [ ${upgrades.supermarket.count} ]<br>
-                    Цена: ${upgrades.supermarket.price}
-                </div>
-                <div class="shop-item" onclick="buyUpgrade('factory')">
-                    Завод<br>
-                    [ ${upgrades.factory.count} ]<br>
-                    Цена: ${upgrades.factory.price}
-                </div>
-                <div class="shop-item" onclick="buyUpgrade('shard')">
-                    Шард-кристалл<br>
-                    [ ${upgrades.shard.count} ]<br>
-                    Цена: ${upgrades.shard.price}
-                </div>
-            `;
-        }
-
-        setInterval(() => {
-            score += 
-                upgrades.coalMine.count * 1 + 
-                upgrades.supermarket.count * 2 + 
-                upgrades.factory.count * 5;
-            updateDisplay();
-        }, 1000);
-
-        updatePrices();
-        function handleClick() {
-            clickCount++;
-            clicksInSecond++; // Добавляем счетчик кликов для текущей секунды
-            let add = clickPower + upgrades.gigaclick.count;
-            
-            if(clickCount % 10 === 0) {
-                add += 50 * upgrades.shard.count;
-            }
-            
-            score += add;
-            updateDisplay();
-        }
-
-        function updateDisplay() {
-            document.getElementById('score').textContent = Math.floor(score);
-            document.getElementById('cps').textContent = 
-                upgrades.coalMine.count * 1 + 
-                upgrades.supermarket.count * 2 + 
-                upgrades.factory.count * 5;
-            document.getElementById('cpsCounter').textContent = cps; // Обновляем CPS
-        }
-
-        // Обновляем CPS каждую секунду
-        setInterval(() => {
-            cps = clicksInSecond;
-            clicksInSecond = 0;
-            updateDisplay();
-        }, 1000);
-
-        // Управление окном
-        document.getElementById('openClicker').addEventListener('click', function(e) {
-            e.preventDefault(); // Отменяем стандартное поведение ссылки
-            showClickerWindow();
-        });
-
-        document.getElementById('openChest').addEventListener('click', function(e) {
-            e.preventDefault(); // Отменяем стандартное поведение ссылки
-            showChestWindow();
-        });
-
-        document.getElementById('openCube').addEventListener('click', function(e) {
-            e.preventDefault(); // Отменяем стандартное поведение ссылки
-            showCubeWindow();
-        });
-
-        // Окно с сундуком
-        const items = [
-            'Эльфийский лунный клинок', 'Зелье исцеления древних', 'Свиток заклинания огненного шара', 'Доспехи гномьего повелителя', 'Артефакт пробуждения дракона', 'Ошейник призывателя фамильяров', 'Кибернетический имплант ночного видения', 'Нейроинтерфейс для взлома матрицы', 'Голографический генератор маскировки', 'Плазменный пистолет с отпечатком ДНК', 'Стим-инжектор адреналинового заряда', 'Кристалл данных с чёрным ИИ', 'Квантовый дестабилизатор материи', 'Персональное поле телепортации', 'Генетический модуль адаптации', 'Фотонный меч с плазменным сердечником', 'Экзокостюм с синтетическим интеллектом', 'Импульсная граната антигравитации', 'Портативный термоядерный реактор', 'Плазменный скафандр с экзоскелетом', 'Мультитул с гравитационным лучом', 'Ксенобиологический сенсор угроз', 'Астральная карта червоточин', 'Кристаллический щит от метеоритных потоков', 'Кольцо ледяного безумия', 'Плащ теневого странника', 'Сфера проклятых душ', 'Посох вечной мерзлоты', 'Книга забытых рун', 'Клинок кровавой жатвы', 'Амулет молчания некроманта', 'Сапоги скорохода горных троллей', 'Рог призыва валькирий', 'Флакон с дыханием феникса', 'Имплант-хамелеон для слива данных', 'Генетический вирус в USB-кристалле', 'Наноперчатка для взлома сейфов', 'Очки с фильтром рекламы AR', 'Биочип усиления когнитивных функций', 'Дрон-невидимка с электромагнитной пушкой', 'Стимулятор замедления времени', 'Кибер-кот с модулем слежки', 'Граната с подавителем гравитации', 'ИИ-вирус для нейросетей', 'Генератор сингулярности в кармане', 'Нейроинтерфейс для управления нанороботами', 'Плазменный дискинетуратор', 'Квантовый шифровальщик данных', 'Экзокостюм с адаптивной мимикрией', 'Имплант для чтения квантовых полей', 'Дроид-трансформер из жидкого металла', 'Антиматериальный аккумулятор', 'Голографический декодер вселенных', 'Генетический конструктор видов', 'Генератор искусственной червоточины', 'Скафандр с биологической регенерацией', 'Портативный терраформер планет', 'Кристалл памяти нейтронной звезды', 'Датчик пространственных аномалий', 'Пушка с антивещественными зарядами', 'Карта темной материи Галактики', 'Наноботы для ремонта корабля в вакууме', 'Генератор гравитационных волн', 'Артефакт древней космической расы', 'Клинок эфирного вихря', 'Нейрошокер с фазовой модуляцией', 'Генератор гравитационных иллюзий', 'Сфера астральной проекции', 'Имплант подавления эмоций', 'Плащ из жидкой тени', 'Кристалл хронорезонанса', 'Пистолет с нанопатронами', 'Кольцо контроля над плазмой', 'Арбалет с квантовыми стрелами', 'Флакон памяти цифрового призрака', 'Доспехи из нанокожи', 'Свиток мгновенного взлома кода', 'Посох синтетической магии', 'Модуль телепатического интерфейса', 'Граната с временной петлей', 'Амулет поглощения радиации', 'Сапоги антигравитационного прыжка', 'Кинжал с токсичным ИИ', 'Щит из сжатой темной материи', 'Глаз сканера квантовых аномалий', 'Перчатка манипуляции энергией', 'Шлем виртуальной симуляции', 'Рунный камень техномантии', 'Инжектор нанорегенерации', 'Книга алгоритмов предсказания', 'Дрон-паразит с электромагнитным импульсом', 'Кольцо синхронизации с AI', 'Плазменный гарпун для охоты в вакууме', 'Артефакт перезагрузки реальности', 'Клинок эха параллельных миров', 'Имплант когнитивного переопределения', 'Сфера подавления квантовых полей', 'Плащ с эффектом фазового смещения', 'Генератор голографических ловушек', 'Амулет перехвата нейроимпульсов', 'Кинжал резонансного распада', 'Доспехи из метеоритного сплава', 'Свиток кода межпространственного портала', 'Перчатка управления магнитными бурями', 'Шлем визуализации тёмной энергии', 'Рунный жезл техношамана', 'Инжектор ускоренного метаболизма', 'Пушка с частицами тёмной материи', 'Кольцо манипуляции гравитацией', 'Флакон с нанокластерами регенерации', 'Арбалет с кристаллическими шипами', 'Дрон-медуза с ионными щупальцами', 'Посох синтеза элементалей', 'Щит из сгущённого времени', 'Очки сканирования биометрических слабостей', 'Сапоги хроноступеней', 'Кристалл памяти чёрной дыры', 'Граната с сингулярностью', 'Книга шифров внеземных цивилизаций', 'Модуль имплантации чужих воспоминаний', 'Гарпун с цепной плазменной реакцией', 'Артефакт пробоя пространства-времени', 'Наноповязка с жидким экранированием', 'Сфера контроля над квантовой пеной', 'Клинок вибраций гиперзвука', 'Имплант перезаписи ДНК', 'Плащ-невидимка с термооптикой', 'Генератор искусственных сновидений', 'Амулет абсорбции кинетической энергии', 'Перчатка проецирования силовых полей', 'Доспехи с самовосстанавливающимся полимером', 'Свиток алгоритмов псевдожизни', 'Шлем подавления псионических волн', 'Рунный диск активации порталов', 'Инжектор гиперускорения нервной системы', 'Пистолет с зарядами антиматерии', 'Кольцо синхронизации с нейросетью', 'Флакон с нанораспылителем яда', 'Арбалет с гарпунами из закалённого света', 'Дрон-хамелеон с мимикрией поверхности', 'Посох управления климатическими аномалиями', 'Щит из сжатого гравитационного поля', 'Очки анализа квантовой запутанности', 'Сапоги с репульсорными усилителями', 'Кристалл хранения виртуального сознания', 'Вихревой клинок', 'Нейрошокер', 'Гравитационный генератор', 'Астральная сфера', 'Эмоциональный имплант', 'Теневой плащ', 'Хронорезонатор', 'Нанопистолет', 'Плазменное кольцо', 'Квантовый арбалет', 'Цифровой флакон', 'Нанодоспехи', 'Взлом-свиток', 'Синтетический посох', 'Телепатический модуль', 'Временная граната', 'Радиационный амулет', 'Антигравитационные сапоги', 'Токсичный кинжал', 'Темный щит', 'Квантовый глаз', 'Энергетическая перчатка', 'Виртуальный шлем', 'Технорунный камень', 'Наножектор', 'Алгоритмическая книга', 'Импульсный дрон', 'AI-кольцо', 'Вакуумный гарпун', 'Реальность-артефакт', 'Параллельный клинок', 'Когнитивный имплант', 'Квантовая сфера', 'Фазовый плащ', 'Голографический генератор', 'Нейроамулет', 'Резонансный кинжал', 'Метеоритные доспехи', 'Портальный свиток', 'Магнитная перчатка', 'Темный шлем', 'Техножезл', 'Метаболический инжектор', 'Темная пушка', 'Гравитационное кольцо', 'Нанокластеры', 'Кристальный арбалет', 'Ионный дрон', 'Элементальный посох', 'Временной щит', 'Биоочки', 'Хроносапоги', 'Чернодырный кристалл', 'Сингулярная граната', 'Ксенокнига', 'Памяти-модуль', 'Плазменный гарпун', 'Пространственный артефакт', 'Наноповязка', 'Квантовая сфера', 'Гиперзвуковой клинок', 'ДНК-имплант', 'Термоплащ', 'Сновидений генератор', 'Кинетический амулет', 'Силовая перчатка', 'Самовосстанавливающиеся доспехи', 'Псевдожизнь-свиток', 'Псионический шлем', 'Портальный диск', 'Гиперинжектор', 'Антиматериальный пистолет', 'Нейросетевое кольцо', 'Нанопыль', 'Световой арбалет', 'Мимикрирующий дрон', 'Климатический посох', 'Гравитационный щит', 'Квантовые очки', 'Репульсорные сапоги', 'Виртуальный кристалл', 'Ионный меч', 'Киберкот', 'Плазменный щит', 'Хронорука', 'Стиллер ДНК', 'Нейроинтерфейс', 'Квантовый диск', 'Виртуальный кинжал', 'Гравитационный пояс', 'Солнечный арбалет', 'Наноброня', 'Кристалл-детонатор', 'Псионик-шлем', 'Лунный клинок', 'Антиграв-сапоги', 'Стихийный жезл', 'Термический сканер', 'Страж-дрон', 'Энергокоготь', 'Киберрог', 'Сетевой вихрь', 'Лазерный капкан', 'Молекулярная сеть', 'Космоплащ', 'Адаптер реальности', 'Рунный вибратор', 'Слизень-робот', 'Фазовый гарпун', 'Киберсемена', 'Вампир-имплант', 'Астральный компас', 'Квантовый клей', 'Нейроядро', 'Плазмореактор', 'Теневой диск', 'Кибершип', 'Генетический ключ', 'Временной якорь', 'Кристальный глаз', 'Рой-дроны', 'Пси-зеркало', 'Гравитационный крюк', 'Солнечный щит', 'Нейротоксин', 'Лазерный кнут', 'Киберпаук', 'Пространственный маркер', 'Энергосфера', 'Квантовый вихрь', 'Антирадар', 'Нейрошприц', 'Плазменный веер', 'Киберкрылья', 'Холодный луч', 'Стиратель памяти', 'Кристальный шип', 'Виртуальный вирус', 'Генератор тумана', 'Солнечный клинок', 'Астральный скальпель', 'Киберсердце', 'Пространственный свист', 'Нейроалмаз', 'Плазменный змей', 'Квантовый барьер', 'Теневой капюшон', 'Рой-наноботы', 'Энергокристалл', 'Киберклык', 'Временная линза', 'Лунный диск', 'Гравитационный пистолет', 'Стихийный шар', 'Антимагнит', 'Нейросеть-ловушка', 'Плазменный дракон', 'Кристальный голем', 'Киберкожа', 'Солнечный посох', 'Виртуальный лабиринт', 'Хроночасы', 'Квантовый маяк', 'Теневой клинок', 'Генетический щит', 'Ионный вихрь', 'Киберзмея', 'Пространственный кинжал', 'Энергопоток', 'Нейрошлем', 'Плазменный паук', 'Астральный ключ', 'Кристальный резак', 'Солнечный дрон', 'Гравитационная петля', 'Рунный двигатель', 'Киберплащ', 'Временной кристалл', 'Драконий щит', 'Рунный амулет', 'Стальной гром', 'Лунный кинжал', 'Ведьмин посох', 'Лесной лук', 'Костяной топор', 'Небесный клинок', 'Огненный свиток', 'Теневой плащ', 'Кровавый меч', 'Ледяной жезл', 'Священный грааль', 'Гномья кирка', 'Призрачный кинжал', 'Звериный рог', 'Каменный щит', 'Солнечный арбалет', 'Проклятый коготь', 'Живой щит', 'Воронье перо', 'Адская броня', 'Эльфийский лук', 'Берсеркерский топор', 'Лунный серп', 'Кристалл душ', 'Железный гром', 'Вихревой арбалет', 'Костяной шип', 'Пламя феникса', 'Тайный свиток', 'Морозный кинжал', 'Древний талисман', 'Оковы тьмы', 'Серебряный клык', 'Гримуар теней', 'Пепельный щит', 'Звездный посох', 'Клык оборотня', 'Рунный молот', 'Плащ паладина', 'Коготь василиска', 'Слеза эльфа', 'Книга мертвых', 'Огненный шар', 'Ледяное сердце', 'Кровавый рог', 'Световой меч', 'Духовный щит', 'Железная роза', 'Песчаный клинок', 'Громовой молот', 'Проклятый щит', 'Коготь дракона', 'Лунный лук', 'Каменный кулак', 'Ведьмина метла', 'Пламенный жезл', 'Теневой кинжал', 'Священный меч', 'Змеиный щит', 'Ледяная стрела', 'Костяной посох', 'Звездный клинок', 'Рунный кинжал', 'Пепельный лук', 'Клык тролля', 'Гримуар света', 'Вихревой щит', 'Серебряный щит', 'Оковы света', 'Древний лук', 'Морозный топор', 'Кровавый посох', 'Плащ некроманта', 'Огненный топор', 'Лунный щит', 'Коготь гарпии', 'Живой клинок', 'Теневой арбалет', 'Священный жезл', 'Звериный щит', 'Каменный молот', 'Ведьмина вуаль', 'Лесной кинжал', 'Песчаный посох', 'Громовой клинок', 'Духовный амулет', 'Книга жизни', 'Адский кинжал', 'Небесный щит', 'Кристалл крови', 'Ледяной плащ', 'Рунный арбалет', 'Огненный лук', 'Костяной щит', 'Звездный плащ', 'Серебряный клинок', 'Проклятый лук', 'Клык демона', 'Теневой меч', 'Священный щит' 
-        ];
-        let isCooldown = false;
-        let countdown;
-
-        // Логика открытия сундука
-        document.getElementById('chestImage').addEventListener('click', function(e) {
-        e.preventDefault();
-
-            if (isCooldown) {
-                showOverlay();
-                return;
-            }
-
-            openChest();
-        });
-
-        let openSound = null;
-        let closeSound = null;
-
-        // Функция для звука открытия
-        function playOpenSound() {
-        if (!openSound) {
-            openSound = new Audio('audio/open.wav');
-            openSound.preload = 'auto';
-        }
-        openSound.currentTime = 0; // Перемотка в начало
-        openSound.play().catch(error => console.error("err opensound", error));
-        }
-
-        function playCloseSound() {
-        if (!closeSound) {
-            closeSound = new Audio('audio/close.wav');
-            closeSound.preload = 'auto';
-        }
-        closeSound.currentTime = 0;
-        closeSound.play().catch(error => console.error("err closesound", error));
-        }
-
-        function openChest() {
-            const chest = document.getElementById('chestImage');
-            chest.src = '/images/chest_open.png';
-            
-            const result = document.getElementById('result');
-            result.textContent = `Вы получили: ${items[Math.floor(Math.random() * items.length)]}`;
-
-            playOpenSound();
-            startCooldown();
-        }
-
-        function startCooldown() {
-            isCooldown = true;
-            let timeLeft = 60;
-            
-            countdown = setInterval(() => {
-                timeLeft--;
-                document.getElementById('timer').textContent = `До следующего открытия: ${timeLeft} сек`;
-                
-                if(timeLeft <= 0) {
-                    clearInterval(countdown);
-                    isCooldown = false;
-                    document.getElementById('chestImage').src = '/images/chest_close.png';
-                    document.getElementById('result').textContent = '';
-                    document.getElementById('timer').textContent = '';
-                    playCloseSound();
-                }
-            }, 1000);
-        }
-
-        function showOverlay() {
-            document.getElementById('overlay').style.display = 'flex';
-            setTimeout(() => {
-                document.getElementById('overlay').style.display = 'none';
-            }, 2000);
-        }
-
-        function showClickerWindow() {
-            document.getElementById('clickerWindow').style.display = 'block';
-            updatePrices();
-            updateShop();
-            centerWindow();
-        }
-
-        function showShopWindow() {
-            document.getElementById('shopWindow').style.display = 'block';
-            centerWindow();
-        }
-
-        function showChestWindow() {
-            document.getElementById('chestWindow').style.display = 'block';
-            centerWindow();
-        }
-
-        function showCubeWindow() {
-            document.getElementById('cubeWindow').style.display = 'block';
-            centerWindow();
-        }
-
-        function showShardIoWindow() {
-            document.getElementById('shardIoWindow').style.display = 'block';
-            centerWindow();
-        }
-
-        function closeWindow(windowId) {
-            document.getElementById(windowId).style.display = 'none';
-        }
-
-        let rotateX = 0, rotateY = 0;
-        let scale = 1;
-        let velocityX = 0, velocityY = 0;
-        const friction = 0.99;
-        const sensitivity = 0.3;
-        const cube = document.querySelector('.cube');
-
-        // Обновление трансформации куба
-        function updateTransform() {
-            cube.style.transform = `
-                scale(${scale})
-                rotateX(${rotateX}deg)
-                rotateY(${rotateY}deg)
-            `;
-        }
-
-        // Обработчики событий мыши
-        cube.addEventListener('mousedown', (e) => {
-            if (e.button !== 0) return; // Только левая кнопка
-            isDragging = true;
-            startX = e.clientX;
-            startY = e.clientY;
-            cube.style.cursor = 'grabbing';
-            e.preventDefault();
-        });
-
-        document.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            
-            const deltaX = e.clientX - startX;
-            const deltaY = e.clientY - startY;
-            
-            rotateY += deltaX * sensitivity;
-            rotateX -= deltaY * sensitivity;
-            
-            velocityX = deltaX * sensitivity * 0.5;
-            velocityY = deltaY * sensitivity * 0.5;
-            
-            updateTransform();
-            
-            startX = e.clientX;
-            startY = e.clientY;
-        });
-
-        document.addEventListener('mouseup', () => {
-            if (!isDragging) return;
-            isDragging = false;
-            cube.style.cursor = 'grab';
-            startInertia();
-        });
-
-        // Инерционное вращение
-        function startInertia() {
-            const animate = () => {
-                if (!isDragging && (Math.abs(velocityX) > 0.1 || Math.abs(velocityY) > 0.1)) {
-                    rotateY += velocityX;
-                    rotateX -= velocityY;
-                    velocityX *= friction;
-                    velocityY *= friction;
-                    updateTransform();
-                    requestAnimationFrame(animate);
-                }
-            };
-            requestAnimationFrame(animate);
-        }
-
-        // Инициализация
-        updateTransform();
-    </script>
+    <script src="js/ui.js"></script>
+    <script src="js/clicker.js"></script>
+    <script src="js/chest.js"></script>
+    <script src="js/cube.js"></script>
+    <script src="js/inventory.js"></script>
 </body>
 </html>
