@@ -462,3 +462,11 @@ footer {
 .floating-menu-item .icon {
     font-size: 20px;
 }
+
+#openInventory .icon {
+    color: #AD8762;
+}
+
+#openClicker .icon {
+    color: #F21234;
+}

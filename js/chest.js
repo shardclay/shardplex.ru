@@ -107,7 +107,7 @@
 
     function startCooldown() {
         isCooldown = true;
-        let timeLeft = 5;
+        let timeLeft = 60;
         document.getElementById('timer').textContent = `До следующего открытия: ${timeLeft} сек`;
         countdown = setInterval(() => {
             timeLeft--;
