@@ -87,11 +87,11 @@
 
 .item-name {
     font-weight: bold;
-    font-size: 1em;
+    font-size: 0.8em;
 }
 
 .item-rarity {
-    font-size: 0.8em;
+    font-size: 0.6em;
 }
 
 .inventory-item:hover .item-details {
