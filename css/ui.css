@@ -153,6 +153,7 @@ h1 {
 .steam { color: #acacac; }
 .namemc { color: var(--brand-color); }
 .donationalerts { color: #ff4242; }
+.modrinth { color: #1BD96A; }
 .clicker { color: #fff; }
 .chest { color: #ffde21; }
 .cube-icon { color: #fff; }
@@ -469,4 +470,10 @@ footer {
 
 #openClicker .icon {
     color: #F21234;
+}
+
+@media screen and (max-width: 768px) {
+    .floating-menu-container {
+        display: none;
+    }
 }
