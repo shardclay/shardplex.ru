@@ -17,28 +17,6 @@
     let countdown;
     let chestCost = 0;
 
-    // Создаем экземпляр склонятора
-    const morpher = new Morpher.Web({
-        tokens: {
-            // Получите токен на https://morpher.ru/
-            token: 'bfeb4eac-9788-4267-8d25-e48347dd632f' // Замените на свой токен
-        }
-    });
-
-    // Словарь для определения рода существительных (упрощенный)
-    const nounGenders = {
-        'Кинжал': 'М', 'Меч': 'М', 'Топор': 'М', 'Молот': 'М', 'Лук': 'М', 
-        'Арбалет': 'М', 'Посох': 'М', 'Жезл': 'М', 'Скипетр': 'М', 'Амулет': 'М', 
-        'Талисман': 'М', 'Кольцо': 'С', 'Браслет': 'М', 'Ожерелье': 'С', 'Корона': 'Ж', 
-        'Шлем': 'М', 'Доспех': 'М', 'Щит': 'М', 'Сапоги': 'МН', 'Перчатки': 'МН', 
-        'Плащ': 'М', 'Книга': 'Ж', 'Свиток': 'М', 'Руна': 'Ж', 'Камень': 'М', 
-        'Кристалл': 'М', 'Шар': 'М', 'Череп': 'М', 'Кость': 'Ж', 'Сердце': 'С', 
-        'Глаз': 'М', 'Зуб': 'М', 'Коготь': 'М', 'Перо': 'С', 'Чешуя': 'Ж', 
-        'Рог': 'М', 'Цветок': 'М', 'Гриб': 'М', 'Корень': 'М', 'Семя': 'С', 
-        'Флакон': 'М', 'Зелье': 'С', 'Эликсир': 'М', 'Порошок': 'М', 'Пыль': 'Ж', 
-        'Карта': 'Ж', 'Ключ': 'М', 'Замок': 'М', 'Компас': 'М', 'Часы': 'МН'
-    };
-
     function generateNewCost() {
         chestCost = Math.floor(Math.random() * (200 - 100 + 1)) + 100;
     }
@@ -80,19 +58,7 @@
         return rarities.common;
     }
 
-    // Функция для склонения прилагательного
-    async function declineAdjective(adjective, noun) {
-        try {
-            const gender = nounGenders[noun] || 'М'; // По умолчанию мужской род
-            const declined = await morpher.russian.decline(adjective, gender);
-            return declined['И'] || adjective; // Возвращаем именительный падеж
-        } catch (error) {
-            console.error('Ошибка склонения:', error);
-            return adjective; // В случае ошибки возвращаем исходное слово
-        }
-    }
-
-    async function openChest() {
+    function openChest() {
         const score = window.getScore();
         if (score < chestCost) {
             showOverlay('Недостаточно кликов!');
@@ -105,17 +71,13 @@
         const chestImage = document.getElementById('chestImage');
         chestImage.src = 'images/chest_open_ani.gif';
 
-        setTimeout(async () => {
+        setTimeout(() => {
             chestImage.src = 'images/chest_open.png';
             const result = document.getElementById('result');
             const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
             const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
             const randomMaterial = materials[Math.floor(Math.random() * materials.length)];
-            
-            // Склоняем прилагательное
-            const declinedAdjective = await declineAdjective(randomAdjective, randomNoun);
-            
-            const itemName = `${declinedAdjective} ${randomNoun} из ${randomMaterial}`;
+            const itemName = `${randomAdjective} ${randomNoun} из ${randomMaterial}`;
             const rarity = getRandomRarity();
 
             let rarityEl;
