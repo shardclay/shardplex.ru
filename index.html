@@ -12,14 +12,16 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shardclay | Социальные сети</title>
+    <title>Shardplex Network</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <link rel="stylesheet" href="css/ui.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/ui.css">
     <link rel="stylesheet" href="css/clicker.css">
     <link rel="stylesheet" href="css/chest.css">
     <link rel="stylesheet" href="css/cube.css">
     <link rel="stylesheet" href="css/inventory.css">
+    <link rel="stylesheet" href="css/integror.css">
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <style>
         body {
@@ -38,241 +40,493 @@
     </style>
 </head>
 <body>
-    <div id="preloader">
-        <div class="loader"></div>
-    </div>
-    <div class="container">
-        <div class="parallax-container">
-            <header id="parallaxHeader">
-                <h1>Shardclay</h1>
-                <p>Ссылки на социальные сети и профили</p>
-            </header>
-        </div>
-        <div class="links-grid">
-            <a href="https://vk.com/shardclay" class="link-card" target="_blank">
-                <i class="icon fab fa-vk vk"></i>
-                <div class="link-text">
-                    <div class="link-title">VK</div>
-                    <div class="link-url">vk.com/shardclay</div>
-                </div>
-            </a>
+    <div id="integror-content">
+        <div id="notification">IP скопирован.</div>
 
-            <a href="https://vk.com/shardstream" class="link-card" target="_blank">
-                <i class="icon fab fa-vk vk"></i>
-                <div class="link-text">
-                    <div class="link-title">Сообщество VK</div>
-                    <div class="link-url">vk.com/shardstream</div>
-                </div>
-            </a>
-            
-            <a href="https://discord.gg/fyPvg4vVKm" class="link-card" target="_blank">
-                <i class="icon fa-brands fa-discord discord" aria-hidden="true"></i>
-                <div class="link-text">
-                    <div class="link-title">Discord</div>
-                    <div class="link-url">https://discord.gg/fyPvg4vVKm</div>
-                </div>
-            </a>
-
-            <a href="https://www.youtube.com/@shardclay" class="link-card" target="_blank">
-                <i class="icon fab fa-youtube youtube"></i>
-                <div class="link-text">
-                    <div class="link-title">YouTube</div>
-                    <div class="link-url">youtube.com/@shardclay</div>
-                </div>
-            </a>
-
-            <a href="https://www.twitch.tv/shardclay" class="link-card" target="_blank">
-                <i class="icon fab fa-twitch twitch"></i>
-                <div class="link-text">
-                    <div class="link-title">Twitch</div>
-                    <div class="link-url">twitch.tv/shardclay</div>
-                </div>
-            </a>
-
-            <a href="https://www.instagram.com/shardclay" class="link-card" target="_blank">
-                <i class="icon fab fa-instagram instagram"></i>
-                <div class="link-text">
-                    <div class="link-title">Instagram</div>
-                    <div class="link-url">instagram.com/shardclay</div>
-                </div>
-            </a>
-
-            <a href="https://t.me/shardclay" class="link-card" target="_blank">
-                <i class="icon fab fa-telegram telegram"></i>
-                <div class="link-text">
-                    <div class="link-title">Telegram</div>
-                    <div class="link-url">t.me/shardclay</div>
-                </div>
-            </a>
-
-            <a href="https://t.me/shardclay_stream" class="link-card" target="_blank">
-                <i class="icon fab fa-telegram telegram"></i>
-                <div class="link-text">
-                    <div class="link-title">Telegram Канал</div>
-                    <div class="link-url">t.me/shardclay_stream</div>
-                </div>
-            </a>
-
-            <a href="https://steamcommunity.com/id/shardclay" class="link-card" target="_blank">
-                <i class="icon fab fa-steam steam"></i>
-                <div class="link-text">
-                    <div class="link-title">Steam</div>
-                    <div class="link-url">steamcommunity.com/id/shardclay</div>
-                </div>
-            </a>
-
-            <a href="https://ru.namemc.com/profile/shardclay" class="link-card" target="_blank">
-                <i class="icon fas fa-id-card namemc"></i>
-                <div class="link-text">
-                    <div class="link-title">NameMC</div>
-                    <div class="link-url">namemc.com/shardclay</div>
-                </div>
-            </a>
-
-            <a href="https://www.donationalerts.com/r/shardclay" class="link-card" target="_blank">
-                <i class="icon fas fa-hand-holding-heart donationalerts"></i>
-                <div class="link-text">
-                    <div class="link-title">Donation Alerts</div>
-                    <div class="link-url">donationalerts.com/r/shardclay</div>
-                </div>
-            </a>
-
-            <a href="https://modrinth.com/user/shardclay" class="link-card" target="_blank">
-                <i class="icon fas fa-solid fa-wrench modrinth"></i>
-                <div class="link-text">
-                    <div class="link-title">Modrinth</div>
-                    <div class="link-url">modrinth.com/user/shardclay</div>
-                </div>
-            </a>
-        </div>
-
-    <div id="clickerWindow" class="window" style="display: none; width: 350px;">
-        <div class="window-header">
-            <div class="window-controls">
-                <div class="control-button close"></div>
-                <div class="minimize control-button"></div>
-                <div class="maximize control-button"></div>
-            </div>
-            <span> </span>
-        </div>
-        <div class="window-content">
-            <div class="counter">Кликов: <span id="score" class="formatted-score">0</span></div>
-            <button id="clicker-button" class="click-button">КЛИКАЙ!</button>
-            <div class="stats-container">
-                <div>Пасивный доход: <span id="cps">0</span>/сек</div>
-                <div>CPS: <span id="cpsCounter">0</span></div>
-            </div>
-            <button id="shop-button" class="book-button">$</button>
-        </div>
-    </div>
-
-    <div id="shopWindow" class="window" style="display: none; width: 350px;">
-        <div class="window-header">
-            <div class="window-controls">
-                <div class="control-button close"></div>
-                <div class="minimize control-button"></div>
-                <div class="maximize control-button"></div>
-            </div>
-            <span> </span>
-        </div>
-        <div class="window-content">
-            <div id="shopItems"></div>
-        </div>
-    </div>
-
-    <div id="chestWindow" class="window" style="display: none; width: 350px; height: 450px;">
-        <div class="window-header">
-            <div class="window-controls">
-                <div class="control-button close"></div>
-                <div class="minimize control-button"></div>
-                <div class="maximize control-button"></div>
-            </div>
-            <span> </span>
-        </div>
-        <div class="window-content">
-            <div id="particles-js"></div>
-            <img src="images/chest_close.png" 
-                 class="chest-image" 
-                 id="chestImage">
-            <div id="result"></div>
-            <div id="timer"></div>
-        </div>
-    </div>
-
-        <div id="cubeWindow" class="window" style="display: none; width: 300px; height: 350px;">
-        <div class="window-header">
-            <div class="window-controls">
-                <div class="control-button close"></div>
-                <div class="minimize control-button"></div>
-                <div class="maximize control-button"></div>
-            </div>
-            <span> </span>
-        </div>
-        <div class="scene">
-            <div class="cube">
-                <div class="cube-face front"></div>
-                <div class="cube-face back"></div>
-                <div class="cube-face right"></div>
-                <div class="cube-face left"></div>
-                <div class="cube-face top"></div>
-                <div class="cube-face bottom"></div>
-            </div>
-        </div>
-    </div>
-
-    <div id="inventoryWindow" class="window" style="display: none; width: 400px; height: 500px;">
-        <div class="window-header">
-            <div class="window-controls">
-                <div class="control-button close"></div>
-                <div class="minimize control-button"></div>
-                <div class="maximize control-button"></div>
-            </div>
-            <span> </span>
-        </div>
-        <div class="window-content" id="inventory-grid">
-        </div>
-    </div>
-
-    
-
-    <div class="overlay" id="overlay">
-        <div class="wait-message">
-            Пожалуйста, подождите 1 минуту перед следующим открытием
-        </div>
-    </div>
-</div>
-
-    <div class="floating-menu-container">
-        <div id="floating-menu" class="floating-menu">
-            <a href="#" class="floating-menu-item" id="openClicker">
-                <i class="icon fas fa-rocket clicker"></i>
-            </a>
-            <a href="#" class="floating-menu-item" id="openChest">
-                <i class="icon fa-solid fa-trophy chest"></i>
-            </a>
-            <a href="#" class="floating-menu-item" id="openCube">
-                <i class="icon fa-solid fa-square cube-icon"></i>
-            </a>
-            <a href="#" class="floating-menu-item" id="openInventory">
-                <i class="icon fa-solid fa-box"></i>
-            </a>
-            
-        </div>
-        <button id="floating-action-button" class="floating-action-button">
-            <i class="fas fa-plus"></i>
+        <button id="close-modal-button" title="">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 1.5rem; height: 1.5rem;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
-    </div>
 
-    <footer>
+        <main class="hero-section">
+            <div class="container text-center max-w-4xl">
+
+                <div id="hero-logo-container" class="relative mx-auto mb-6 p-8 pt-16">
+                    <img src="https://media.discordapp.net/attachments/973315554616148028/1431297992773730384/image_2025-10-24_22-06-52.png?ex=68fce7a1&is=68fb9621&hm=fe8746586e15d4e49582112723ee1a12d9882bca33a7798150182b4e577929f0&=&format=webp&quality=lossless&width=1872&height=518" 
+                         alt="Shardplex Logo" 
+                         class="logo-img">
+                </div>
+
+                <p class="hero-description mx-auto">
+                    Пространство с идеальными условиями для раскрытия собственного творческого потенциала в среде semi-vanilla выживания
+                </p>
+
+                <div class="flex flex-col items-center space-y-3 max-w-sm mx-auto">
+                    
+                    <button id="ip-copy-button" class="ip-button">
+                        mc.shardplex.ru
+                        <svg class="copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    </button>
+
+                    <div class="online-status-group" style="display: flex; flex-direction: column; align-items: center; margin-top: 0.75rem;">
+                        <div id="online-status" class="online-status">
+                        </div>
+                        <p class="version-text">Версия сервера — 1.21.10</p>
+                    </div>
+                </div>
+
+                <div class="anchor-group">
+
+                    <button id="scroll-to-monitoring" class="anchor-btn">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 7H18.01M15 7H15.01M18 17H18.01M15 17H15.01M6 10H18C18.9319 10 19.3978 10 19.7654 9.84776C20.2554 9.64477 20.6448 9.25542 20.8478 8.76537C21 8.39782 21 7.93188 21 7C21 6.06812 21 5.60218 20.8478 5.23463C20.6448 4.74458 20.2554 4.35523 19.7654 4.15224C19.3978 4 18.9319 4 18 4H6C5.06812 4 4.60218 4 4.23463 4.15224C3.74458 4.35523 3.35523 4.74458 3.15224 5.23463C3 5.60218 3 6.06812 3 7C3 7.93188 3 8.39782 3.15224 8.76537C3.35523 9.25542 3.74458 9.64477 4.23463 9.84776C4.60218 10 5.06812 10 6 10ZM6 20H18C18.9319 20 19.3978 20 19.7654 19.8478C20.2554 19.6448 20.6448 19.2554 20.8478 18.7654C21 18.3978 21 17.9319 21 17C21 16.0681 21 15.6022 20.8478 15.2346C20.6448 14.7446 20.2554 14.3552 19.7654 14.1522C19.3978 14 18.9319 14 18 14H6C5.06812 14 4.60218 14 4.23463 14.1522C3.74458 14.3552 3.35523 14.7446 3.15224 15.2346C3 15.6022 3 16.0681 3 17C3 17.9319 3 18.3978 3.15224 18.7654C3.35523 19.2554 3.74458 19.6448 4.23463 19.8478C4.60218 20 5.06812 20 6 20Z" />
+                        </svg>
+                        Голосовать
+                    </button>
+
+                    <button id="scroll-to-voice" class="anchor-btn">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 12V13C20 17.4183 16.4183 21 12 21C7.58172 21 4 17.4183 4 13V12M12 17C9.79086 17 8 15.2091 8 13V7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7V13C16 15.2091 14.2091 17 12 17Z" />
+                        </svg>
+                        Войсмод
+                    </button>
+
+                    <a href="https://t.me/shardplex" target="_blank" rel="noopener noreferrer" class="anchor-btn">
+                        <svg fill="currentColor" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 26.070313 3.996094 C 25.734375 4.011719 25.417969 4.109375 25.136719 4.21875 L 25.132813 4.21875 C 24.847656 4.332031 23.492188 4.902344 21.433594 5.765625 C 19.375 6.632813 16.703125 7.757813 14.050781 8.875 C 8.753906 11.105469 3.546875 13.300781 3.546875 13.300781 L 3.609375 13.277344 C 3.609375 13.277344 3.25 13.394531 2.875 13.652344 C 2.683594 13.777344 2.472656 13.949219 2.289063 14.21875 C 2.105469 14.488281 1.957031 14.902344 2.011719 15.328125 C 2.101563 16.050781 2.570313 16.484375 2.90625 16.722656 C 3.246094 16.964844 3.570313 17.078125 3.570313 17.078125 L 3.578125 17.078125 L 8.460938 18.722656 C 8.679688 19.425781 9.949219 23.597656 10.253906 24.558594 C 10.433594 25.132813 10.609375 25.492188 10.828125 25.765625 C 10.933594 25.90625 11.058594 26.023438 11.207031 26.117188 C 11.265625 26.152344 11.328125 26.179688 11.390625 26.203125 C 11.410156 26.214844 11.429688 26.21875 11.453125 26.222656 L 11.402344 26.210938 C 11.417969 26.214844 11.429688 26.226563 11.441406 26.230469 C 11.480469 26.242188 11.507813 26.246094 11.558594 26.253906 C 12.332031 26.488281 12.953125 26.007813 12.953125 26.007813 L 12.988281 25.980469 L 15.871094 23.355469 L 20.703125 27.0625 L 20.8125 27.109375 C 21.820313 27.550781 22.839844 27.304688 23.378906 26.871094 C 23.921875 26.433594 24.132813 25.875 24.132813 25.875 L 24.167969 25.785156 L 27.902344 6.65625 C 28.007813 6.183594 28.035156 5.742188 27.917969 5.3125 C 27.800781 4.882813 27.5 4.480469 27.136719 4.265625 C 26.769531 4.046875 26.40625 3.980469 26.070313 3.996094 Z M 25.96875 6.046875 C 25.964844 6.109375 25.976563 6.101563 25.949219 6.222656 L 25.949219 6.234375 L 22.25 25.164063 C 22.234375 25.191406 22.207031 25.25 22.132813 25.308594 C 22.054688 25.371094 21.992188 25.410156 21.667969 25.28125 L 15.757813 20.75 L 12.1875 24.003906 L 12.9375 19.214844 C 12.9375 19.214844 22.195313 10.585938 22.59375 10.214844 C 22.992188 9.84375 22.859375 9.765625 22.859375 9.765625 C 22.88... [truncated]">
+                        </svg>
+                        Telegram
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <section id="monitoring-section" class="monitoring-section">
+            <div class="container mx-auto">
+                <h2 class="heading-main text-center">
+                    Поддержите нас голосованием
+                </h2>
+                <div class="monitoring-grid">
+
+                    <div class="card monitoring-card text-center">
+                        <h3 class="title">MinecraftRating</h3>
+                        <p class="description">Ваш голос — это наше развитие и место в топе серверов.</p>
+                        <a href="https://minecraftrating.ru/server/shardplex_new/" target="_blank" rel="noopener noreferrer">
+                            Голосовать
+                        </a>
+                    </div>
+                    <div class="card monitoring-card text-center">
+                        <h3 class="title">HotMC</h3>
+                        <p class="description">Поднимите наш рейтинг, чтобы больше игроков нас нашли!</p>
+                        <a href="https://hotmc.ru/minecraft-server-283138" target="_blank" rel="noopener noreferrer">
+                            Голосовать
+                        </a>
+                    </div>
+                    <div class="card monitoring-card text-center">
+                        <h3 class="title">MonitoringMinecraft</h3>
+                        <p class="description">Покажите миру, что Shardplex — лучший выбор для игры.</p>
+                        <a href="https://monitoringminecraft.net/server/11538-shardplex-network" target="_blank" rel="noopener noreferrer">
+                            Голосовать
+                        </a>
+                    </div>
+                    <div class="card monitoring-card text-center">
+                        <h3 class="title">TMonitoring</h3>
+                        <p class="description">Каждый голос помогает нам расти и улучшать сервер.</p>
+                        <a href="https://tmonitoring.com/server/mcgamer/" target="_blank" rel="noopener noreferrer">
+                            Голосовать
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="voice-section">
+            <div class="container mx-auto" style="max-width: 80rem;">
+                <h2 class="heading-main text-center">
+                    Голосовое общение для полного погружения
+                </h2>
+                <div class="card voice-card mx-auto">
+                    <div class="voice-info">
+                        <img src="https://cdn.modrinth.com/data/9eGKb6K1/icon.png" alt="Simple Voice Chat Logo" 
+                             class="voice-logo">
+
+                        <div class="voice-text">
+                            <p class="title">Simple Voice Chat</p>
+                            <p class="subtitle">Мод для полноценного игрового опыта.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="download-buttons">
+                        <!-- Кнопка Modrinth -->
+                        <a href="https://modrinth.com/mod/simple-voice-chat" target="_blank" rel="noopener noreferrer" 
+                           class="modrinth-btn">
+                            Скачать (Modrinth)
+                        </a>
+                        <!-- Кнопка CurseForge -->
+                        <a href="https://www.curseforge.com/minecraft/mc-mods/simple-voice-chat" target="_blank" rel="noopener noreferrer" 
+                           class="curseforge-btn">
+                            Скачать (CurseForge)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="py-6 border-t border-gray-800 relative">
+            <div class="container footer-content">
+                <p>
+                    &copy; <span id="current-year"></span> Shardplex Network. Все права защищены.
+                </p>
+            </div>
+        </footer>
+    </div>
+    <div id="main-content" style="display: none;">
+        <div id="preloader">
+            <div class="loader"></div>
+        </div>
         <div class="container">
-            <div class="credits">
-                Сайт создан с использованием AI Assistant (<a href="https://deepseek.com" target="_blank">DeepSeek</a>), Gemini<br>
-                Дизайн и разработка: <a href="https://github.com/glowspruce" target="_blank">glowspruce</a>, <a href="https://github.com/shardclay" target="_blank">Shardclay</a><br>
-                © 2025 Прав у сайта нет
+            <div class="parallax-container">
+                <header id="parallaxHeader">
+                    <h1>Shardclay</h1>
+                    <p>Ссылки на социальные сети и профили</p>
+                </header>
+            </div>
+            <div class="links-grid">
+                <a href="https://vk.com/shardclay" class="link-card" target="_blank">
+                    <i class="icon fab fa-vk vk"></i>
+                    <div class="link-text">
+                        <div class="link-title">VK</div>
+                        <div class="link-url">vk.com/shardclay</div>
+                    </div>
+                </a>
+
+                <a href="https://vk.com/shardstream" class="link-card" target="_blank">
+                    <i class="icon fab fa-vk vk"></i>
+                    <div class="link-text">
+                        <div class="link-title">Сообщество VK</div>
+                        <div class="link-url">vk.com/shardstream</div>
+                    </div>
+                </a>
+                
+                <a href="https://discord.gg/fyPvg4vVKm" class="link-card" target="_blank">
+                    <i class="icon fa-brands fa-discord discord" aria-hidden="true"></i>
+                    <div class="link-text">
+                        <div class="link-title">Discord</div>
+                        <div class="link-url">https://discord.gg/fyPvg4vVKm</div>
+                    </div>
+                </a>
+
+                <a href="https://www.youtube.com/@shardclay" class="link-card" target="_blank">
+                    <i class="icon fab fa-youtube youtube"></i>
+                    <div class="link-text">
+                        <div class="link-title">YouTube</div>
+                        <div class="link-url">youtube.com/@shardclay</div>
+                    </div>
+                </a>
+
+                <a href="https://www.twitch.tv/shardclay" class="link-card" target="_blank">
+                    <i class="icon fab fa-twitch twitch"></i>
+                    <div class="link-text">
+                        <div class="link-title">Twitch</div>
+                        <div class="link-url">twitch.tv/shardclay</div>
+                    </div>
+                </a>
+
+                <a href="https://www.instagram.com/shardclay" class="link-card" target="_blank">
+                    <i class="icon fab fa-instagram instagram"></i>
+                    <div class="link-text">
+                        <div class="link-title">Instagram</div>
+                        <div class="link-url">instagram.com/shardclay</div>
+                    </div>
+                </a>
+
+                <a href="https://t.me/shardclay" class="link-card" target="_blank">
+                    <i class="icon fab fa-telegram telegram"></i>
+                    <div class="link-text">
+                        <div class="link-title">Telegram</div>
+                        <div class="link-url">t.me/shardclay</div>
+                    </div>
+                </a>
+
+                <a href="https://t.me/shardclay_stream" class="link-card" target="_blank">
+                    <i class="icon fab fa-telegram telegram"></i>
+                    <div class="link-text">
+                        <div class="link-title">Telegram Канал</div>
+                        <div class="link-url">t.me/shardclay_stream</div>
+                    </div>
+                </a>
+
+                <a href="https://steamcommunity.com/id/shardclay" class="link-card" target="_blank">
+                    <i class="icon fab fa-steam steam"></i>
+                    <div class="link-text">
+                        <div class="link-title">Steam</div>
+                        <div class="link-url">steamcommunity.com/id/shardclay</div>
+                    </div>
+                </a>
+
+                <a href="https://ru.namemc.com/profile/shardclay" class="link-card" target="_blank">
+                    <i class="icon fas fa-id-card namemc"></i>
+                    <div class="link-text">
+                        <div class="link-title">NameMC</div>
+                        <div class="link-url">namemc.com/shardclay</div>
+                    </div>
+                </a>
+
+                <a href="https://www.donationalerts.com/r/shardclay" class="link-card" target="_blank">
+                    <i class="icon fas fa-hand-holding-heart donationalerts"></i>
+                    <div class="link-text">
+                        <div class="link-title">Donation Alerts</div>
+                        <div class="link-url">donationalerts.com/r/shardclay</div>
+                    </div>
+                </a>
+
+                <a href="https://modrinth.com/user/shardclay" class="link-card" target="_blank">
+                    <i class="icon fas fa-solid fa-wrench modrinth"></i>
+                    <div class="link-text">
+                        <div class="link-title">Modrinth</div>
+                        <div class="link-url">modrinth.com/user/shardclay</div>
+                    </div>
+                </a>
+            </div>
+
+        <div id="clickerWindow" class="window" style="display: none; width: 350px;">
+            <div class="window-header">
+                <div class="window-controls">
+                    <div class="control-button close"></div>
+                    <div class="minimize control-button"></div>
+                    <div class="maximize control-button"></div>
+                </div>
+                <span> </span>
+            </div>
+            <div class="window-content">
+                <div class="counter">Кликов: <span id="score" class="formatted-score">0</span></div>
+                <button id="clicker-button" class="click-button">КЛИКАЙ!</button>
+                <div class="stats-container">
+                    <div>Пасивный доход: <span id="cps">0</span>/сек</div>
+                    <div>CPS: <span id="cpsCounter">0</span></div>
+                </div>
+                <button id="shop-button" class="book-button">$</button>
             </div>
         </div>
-    </footer>
 
+        <div id="shopWindow" class="window" style="display: none; width: 350px;">
+            <div class="window-header">
+                <div class="window-controls">
+                    <div class="control-button close"></div>
+                    <div class="minimize control-button"></div>
+                    <div class="maximize control-button"></div>
+                </div>
+                <span> </span>
+.
+            </div>
+            <div class="window-content">
+                <div id="shopItems"></div>
+            </div>
+        </div>
+
+        <div id="chestWindow" class="window" style="display: none; width: 350px; height: 450px;">
+            <div class="window-header">
+                <div class="window-controls">
+                    <div class="control-button close"></div>
+                    <div class="minimize control-button"></div>
+                    <div class="maximize control-button"></div>
+                </div>
+                <span> </span>
+            </div>
+            <div class="window-content">
+                <div id="particles-js"></div>
+                <img src="images/chest_close.png" 
+                     class="chest-image" 
+                     id="chestImage">
+                <div id="result"></div>
+                <div id="timer"></div>
+            </div>
+        </div>
+
+            <div id="cubeWindow" class="window" style="display: none; width: 300px; height: 350px;">
+            <div class="window-header">
+                <div class="window-controls">
+                    <div class="control-button close"></div>
+                    <div class="minimize control-button"></div>
+                    <div class="maximize control-button"></div>
+                </div>
+                <span> </span>
+            </div>
+            <div class="scene">
+                <div class="cube">
+                    <div class="cube-face front"></div>
+                    <div class="cube-face back"></div>
+                    <div class="cube-face right"></div>
+                    <div class="cube-face left"></div>
+                    <div class="cube-face top"></div>
+                    <div class="cube-face bottom"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="inventoryWindow" class="window" style="display: none; width: 400px; height: 500px;">
+            <div class="window-header">
+                <div class="window-controls">
+                    <div class="control-button close"></div>
+                    <div class="minimize control-button"></div>
+                    <div class="maximize control-button"></div>
+                </div>
+                <span> </span>
+            </div>
+            <div class="window-content" id="inventory-grid">
+            </div>
+        </div>
+
+        
+
+        <div class="overlay" id="overlay">
+            <div class="wait-message">
+                Пожалуйста, подождите 1 минуту перед следующим открытием
+            </div>
+        </div>
+    </div>
+
+        <div class="floating-menu-container">
+            <div id="floating-menu" class="floating-menu">
+                <a href="#" class="floating-menu-item" id="openClicker">
+                    <i class="icon fas fa-rocket clicker"></i>
+                </a>
+                <a href="#" class="floating-menu-item" id="openChest">
+                    <i class="icon fa-solid fa-trophy chest"></i>
+                </a>
+                <a href="#" class="floating-menu-item" id="openCube">
+                    <i class="icon fa-solid fa-square cube-icon"></i>
+                </a>
+                <a href="#" class="floating-menu-item" id="openInventory">
+                    <i class="icon fa-solid fa-box"></i>
+                </a>
+                
+            </div>
+            <button id="floating-action-button" class="floating-action-button">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="credits">
+                    Сайт создан с использованием AI Assistant (<a href="https://deepseek.com" target="_blank">DeepSeek</a>), Gemini<br>
+                    Дизайн и разработка: <a href="https://github.com/glowspruce" target="_blank">glowspruce</a>, <a href="https://github.com/shardclay" target="_blank">Shardclay</a><br>
+                    © 2025 Прав у сайта нет
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const SERVER_IP = 'mc.shardplex.ru';
+        const API_URL = `https://api.mcsrvstat.us/2/${SERVER_IP}`;
+        
+        const ipCopyButton = document.getElementById('ip-copy-button');
+        const onlineStatusDiv = document.getElementById('online-status');
+        const notification = document.getElementById('notification');
+        const scrollToMonitoringButton = document.getElementById('scroll-to-monitoring');
+        const closeModalButton = document.getElementById('close-modal-button'); 
+        const scrollToVoiceButton = document.getElementById('scroll-to-voice'); 
+        
+        function showNotification() {
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2500);
+        }
+
+        function copyIpToClipboard() {
+            try {
+                const tempInput = document.createElement('textarea');
+                tempInput.value = SERVER_IP;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                showNotification();
+            } catch (err) {
+                console.error('Не удалось скопировать IP:', err);
+            }
+        }
+
+        ipCopyButton.addEventListener('click', copyIpToClipboard);
+
+        async function updateServerStatus() {
+            const spinnerSVG = `
+                <svg class="spinner" style="width: 1.25rem; height: 1.25rem; margin-right: 0.75rem; color: white;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" style="opacity: 0.25;"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" style="opacity: 0.75;"></path>
+                </svg>
+            `;
+            onlineStatusDiv.innerHTML = spinnerSVG + 'Загрузка статуса';
+            onlineStatusDiv.classList.remove('online', 'offline');
+
+            try {
+                const maxRetries = 3;
+                let data = null;
+                for (let i = 0; i < maxRetries; i++) {
+                    try {
+                        const response = await fetch(API_URL);
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        data = await response.json();
+                        break;
+                    } catch (error) {
+                        if (i < maxRetries - 1) {
+                            await new Promise(resolve => setTimeout(resolve, Math.pow(2, i) * 1000));
+                        } else {
+                            throw error;
+                        }
+                    }
+                }
+
+                if (data && data.online) {
+                    const players = data.players.online;
+                    onlineStatusDiv.innerHTML = `Онлайн: ${players}`; 
+                    onlineStatusDiv.classList.add('online');
+                } else {
+                    onlineStatusDiv.textContent = 'Сервер оффлайн';
+                    onlineStatusDiv.classList.add('offline');
+                }
+
+            } catch (error) {
+                console.error('Ошибка при получении статуса сервера:', error);
+                onlineStatusDiv.textContent = 'Ошибка загрузки статуса';
+                onlineStatusDiv.classList.add('offline');
+            }
+        }
+
+        function handleCloseModal() {
+            const integrorContent = document.getElementById('integror-content');
+            const mainContent = document.getElementById('main-content');
+            integrorContent.style.opacity = '0';
+            integrorContent.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                integrorContent.style.display = 'none';
+                mainContent.style.display = 'block';
+            }, 500);
+        }
+
+        window.onload = function() {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            updateServerStatus();
+            setInterval(updateServerStatus, 60000);
+
+            scrollToMonitoringButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('monitoring-section').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            scrollToVoiceButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('voice-section').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            closeModalButton.addEventListener('click', handleCloseModal);
+        };
+    </script>
     <script src="js/ui.js"></script>
     <script src="js/clicker.js"></script>
     <script src="js/chest.js"></script>
