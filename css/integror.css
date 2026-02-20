@@ -81,34 +81,12 @@ section {
 }
 
 .logo-img {
-    max-width: 100%;
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1.5rem;
-    transition: all 0.5s;
-    position: relative;
-    z-index: 20;
-}
-
-
-@media (min-width: 768px) {
-    .logo-img {
-    width: 100%;
-    max-width: 380px;
+    width: clamp(280px, 50vw, 896px);
     height: auto;
     margin: 0 auto 1.5rem auto;
     display: block;
 }
-}
-@media (min-width: 1024px) {
-    .logo-img {
-    width: 100%;
-    max-width: 380px;
-    height: auto;
-    margin: 0 auto 1.5rem auto;
-    display: block;
-}
+
 }
 
 .hero-description {
