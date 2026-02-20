@@ -93,10 +93,18 @@ section {
 
 
 @media (min-width: 768px) {
-    .logo-img { max-width: 600px; }
+    .logo-img {
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+}
 }
 @media (min-width: 1024px) {
-    .logo-img { max-width: 896px; }
+    .logo-img {
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+}
 }
 
 .hero-description {
