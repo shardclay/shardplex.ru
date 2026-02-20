@@ -81,10 +81,11 @@ section {
 }
 
 .logo-img {
-    width: clamp(280px, 50vw, 896px);
+    width: 100%;
+    max-width: 900px;
     height: auto;
-    margin: 0 auto 1.5rem auto;
     display: block;
+    margin: 0 auto 1.5rem auto;
 }
 
 }
