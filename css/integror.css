@@ -92,9 +92,6 @@ section {
     z-index: 20;
 }
 
-.logo-img:hover {
-    transform: scale(1.03);
-}
 
 @media (min-width: 768px) {
     .logo-img { max-width: 600px; }
