@@ -94,16 +94,20 @@ section {
 
 @media (min-width: 768px) {
     .logo-img {
-    width: 90%;
-    max-width: 400px;
+    width: 100%;
+    max-width: 380px;
     height: auto;
+    margin: 0 auto 1.5rem auto;
+    display: block;
 }
 }
 @media (min-width: 1024px) {
     .logo-img {
-    width: 90%;
-    max-width: 400px;
+    width: 100%;
+    max-width: 380px;
     height: auto;
+    margin: 0 auto 1.5rem auto;
+    display: block;
 }
 }
 
