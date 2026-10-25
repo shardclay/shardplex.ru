@@ -16,7 +16,7 @@
             --card-bg: #1c1e22;
             --card-hover: #23262d;
             --accent-color: #8A7D93;
-            --accent-hover: #8A7D93;
+            --accent-hover: #9d8fa7;
             --text-main: #ffffff;
             --text-muted: #a1a8b5;
             --modal-overlay: rgba(0, 0, 0, 0.6);
@@ -38,8 +38,8 @@
             align-items: center;
             overflow: hidden;
             position: relative;
-	    -webkit-user-select: none; /* Для Safari и iOS */
-    	    -moz-user-select: none;    /* Для старых версий Firefox */
+            -webkit-user-select: none; /* Для Safari и iOS */
+            -moz-user-select: none;    /* Для старых версий Firefox */
             -ms-user-select: none;     /* Для старых версий IE/Edge */
             user-select: none;
         }
@@ -82,7 +82,7 @@
             margin-bottom: 20px;
             filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5));
             animation: fadeIn 1s ease;
-	    pointer-events: none;
+            pointer-events: none;
         }
 
         /* Слоган */
@@ -174,16 +174,19 @@
         /* Нижний ряд кнопок */
         .action-buttons {
             display: flex;
-            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
             width: 100%;
-            max-width: 550px;
+            max-width: 680px;
             animation: fadeIn 1.8s ease;
         }
 
         .btn {
-            flex: 1;
-            padding: 14px 20px;
-            font-size: 1rem;
+            flex: 1 1 auto;
+            min-width: 115px;
+            padding: 14px 18px;
+            font-size: 0.95rem;
             font-weight: 600;
             border-radius: 10px;
             text-decoration: none;
@@ -193,6 +196,7 @@
             align-items: center;
             justify-content: center;
             border: none;
+            white-space: nowrap;
         }
 
         .btn-primary {
@@ -217,7 +221,7 @@
             transform: translateY(-2px);
         }
 
-        /* Модальное окно (Поп-ап для голосования) */
+        /* Модальные окна (Голосование и Покупка валюты) */
         .modal {
             position: fixed;
             top: 0;
@@ -284,7 +288,96 @@
 
         .monitoring-item:hover {
             border-color: var(--accent-color);
-            background-color: rgba(27, 217, 106, 0.05);
+            background-color: rgba(138, 125, 147, 0.08);
+        }
+
+        /* Стили для формы доната */
+        .donate-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            text-align: left;
+            margin-bottom: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .form-input {
+            background-color: var(--bg-color);
+            border: 1px solid #2d3139;
+            color: var(--text-main);
+            padding: 13px 14px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            outline: none;
+            transition: border-color 0.2s ease;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        .form-input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .coins-hint {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 2px;
+        }
+
+        .coins-hint span {
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+        }
+
+        .payment-option {
+            flex: 1;
+            position: relative;
+        }
+
+        .payment-option input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .payment-option span {
+            display: block;
+            background-color: var(--bg-color);
+            border: 1px solid #2d3139;
+            color: var(--text-muted);
+            padding: 11px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .payment-option input:checked + span {
+            border-color: var(--accent-color);
+            color: var(--text-main);
+            background-color: rgba(138, 125, 147, 0.12);
         }
 
         .close-modal {
@@ -314,6 +407,9 @@
 
         /* Адаптивность для мобильных устройств */
         @media (max-width: 600px) {
+            body {
+                overflow-y: auto;
+            }
             .action-buttons {
                 flex-direction: column;
                 gap: 10px;
@@ -355,12 +451,14 @@
 
         <div class="action-buttons">
             <button class="btn btn-primary" onclick="openModal()">Голосовать</button>
+            <button class="btn btn-primary" onclick="openDonateModal()">Магазин</button>
             <a href="https://modrinth.com/plugin/simple-voice-chat" target="_blank" class="btn btn-secondary">Войсмод</a>
             <a href="https://t.me/shardplex" target="_blank" class="btn btn-secondary">Телеграм</a>
             <a href="http://mc.shardplex.ru:8100" target="_blank" class="btn btn-secondary">Карта</a>
         </div>
     </div>
 
+    <!-- Модальное окно голосования -->
     <div class="modal" id="voteModal" onclick="closeModalOutside(event)">
         <div class="modal-content">
             <div class="modal-title">Выберите мониторинг</div>
@@ -372,7 +470,51 @@
         </div>
     </div>
 
+    <!-- Модальное окно покупки валюты -->
+    <div class="modal" id="donateModal" onclick="closeModalOutside(event)">
+        <div class="modal-content">
+            <div class="modal-title">Покупка валюты</div>
+            <form class="donate-form" method="POST" action="https://yoomoney.ru/quickpay/confirm" onsubmit="return preparePayment()">
+                <!-- ЗАМЕНИ 41001XXXXXXXXXXXX НА НОМЕР СВОЕГО КОШЕЛЬКА ЮMONEY -->
+                <input type="hidden" name="receiver" value="410017361325968">
+                <input type="hidden" name="quickpay-form" value="button">
+                <input type="hidden" name="successURL" value="https://shardplex.ru">
+                <input type="hidden" name="label" id="ym-label" value="">
+
+                <div class="form-group">
+                    <label class="form-label" for="mc-nick">Ваш никнейм на сервере</label>
+                    <input class="form-input" type="text" id="mc-nick" required pattern="^[a-zA-Z0-9_]{3,16}$" placeholder="Введите ваш ник">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="mc-sum">Сумма пополнения (₽)</label>
+                    <input class="form-input" type="number" name="sum" id="mc-sum" required min="10" max="15000" value="100" oninput="updateCoinsPreview()">
+                    <div class="coins-hint">К зачислению: <span id="coins-preview">100</span> валюты</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Способ оплаты</label>
+                    <div class="payment-methods">
+                        <label class="payment-option">
+                            <input type="radio" name="paymentType" value="AC" checked>
+                            <span>Карта РФ</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="paymentType" value="PC">
+                            <span>ЮMoney</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 4px;">Перейти к оплате</button>
+            </form>
+            <button class="close-modal" onclick="closeDonateModal()">Закрыть</button>
+        </div>
+    </div>
+
     <script>
+        const COIN_RATE = 1; // Курс: 1 рубль = 1 единица валюты
+
         // Функция копирования IP в буфер обмена
         function copyToClipboard() {
             const ip = "mc.shardplex.ru";
@@ -381,7 +523,6 @@
 
             navigator.clipboard.writeText(ip).then(() => {
                 ipTextElement.innerText = "Скопировано!";
-                // Подсвечиваем иконку зеленым при успешном копировании
                 icon.style.fill = "var(--accent-color)";
                 
                 setTimeout(() => {
@@ -393,7 +534,7 @@
             });
         }
 
-        // Логика открытия/закрытия модального окна
+        // Логика открытия/закрытия модальных окон
         function openModal() {
             document.getElementById("voteModal").classList.add("active");
         }
@@ -402,10 +543,32 @@
             document.getElementById("voteModal").classList.remove("active");
         }
 
+        function openDonateModal() {
+            document.getElementById("donateModal").classList.add("active");
+        }
+
+        function closeDonateModal() {
+            document.getElementById("donateModal").classList.remove("active");
+        }
+
         function closeModalOutside(event) {
             if (event.target.classList.contains('modal')) {
                 closeModal();
+                closeDonateModal();
             }
+        }
+
+        // Пересчет валюты и подготовка платежа
+        function updateCoinsPreview() {
+            const sum = parseFloat(document.getElementById("mc-sum").value) || 0;
+            document.getElementById("coins-preview").innerText = Math.floor(sum * COIN_RATE);
+        }
+
+        function preparePayment() {
+            const nick = document.getElementById("mc-nick").value.trim();
+            if (!nick) return false;
+            document.getElementById("ym-label").value = nick;
+            return true;
         }
 
         // Динамический пинг сервера через публичное API mcsrvstat
